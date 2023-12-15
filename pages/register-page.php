@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,23 +14,24 @@
         <img src="../assets/images/logo-colorized.png" alt="" class="image-logo">
 
         <div class="contain-wrapper">
+        <form class="content" action="register_con.php" method="post">
             <h1>Register</h1>
             <div class="field-wrapper">
                 <div class="textfield-wrapper">
                     <h2>Username</h2>
-                    <input type="text" class="text-field">
+                    <input type="text" class="text-field" name="username"><br>
                 </div>
                 <div class="textfield-wrapper">
                     <h2>Name</h2>
-                    <input type="text" class="text-field">
+                    <input type="text" class="text-field" name="name"><br>
                 </div>
                 <div class="textfield-wrapper">
                     <h2>Email</h2>
-                    <input type="text" class="text-field">
+                    <input type="text" class="text-field" name="email"><br>
                 </div>
                 <div class="textfield-wrapper">
                     <h2>Password</h2>
-                    <input type="text" class="text-field">
+                    <input type="text" class="text-field" name="password"><br>
                     <a href="#">
                         <div class="forgot-wrapper">
                             <h3>Forgot Password?</h3>
@@ -57,7 +61,9 @@
                     <h5>Sign in with Google</h5>
                 </div>
             </a>
+        </form>
         </div>
     </div>
 </body>
 </html>
+
