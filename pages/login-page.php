@@ -39,7 +39,9 @@
                 </a>
             </div>
             <div class="or-wrapper">
+                <div class="line"></div>
                 <h4>OR</h4>
+                <div class="line"></div>
             </div>
             <a href="#">
                 <div class="google-wrapper">
