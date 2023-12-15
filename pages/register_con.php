@@ -6,14 +6,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $insert_query = "INSERT INTO `user_data`(`username`, `password`, `name`, `email`) VALUES ('$username','$password','$name','$email')";
-    $inserted = mysqli_query($connection, $insert_query);
-    if($inserted){
+    try{
+        $insert_query = "INSERT INTO `user_data`(`username`, `password`, `name`, `email`) VALUES ('$username','$password','$name','$email')";
+        $inserted = mysqli_query($connection, $insert_query);
         header('Location: login-page.php');
         exit();
+    }catch (Exception $e) {
+        echo 'username must be unique';
+        // echo "Error: " . $e->getMessage();
     }
-    else{
-        echo 'failed';
-    }
+    // if($inserted){
+    //     header('Location: login-page.php');
+    //     exit();
+    // }
+    // else{
+    //     echo 'failed';
 }
+
 ?>
