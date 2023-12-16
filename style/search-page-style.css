@@ -16,9 +16,16 @@
     font-family: Regular-Font;
     src: url(../assets/fonts/Inter-Regular.ttf);
 }
+@font-face {
+    font-family: Thin-Font;
+    src: url(../assets/fonts/Inter-Thin.ttf);
+}
 
 body {
     background-color: #222222;
+    
+    display: flex;
+    flex-direction: row;
 }
 
 h2 {
@@ -35,10 +42,21 @@ a {
 .navbar {
     display: flex;
     flex-direction: column;
+    position: fixed;
 
     background-color: #111111;
     height: 94vh;
-    width: 25vh;
+    width: 15%;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.spacing {
+    display: flex;
+    flex-direction: column;
+
+    height: 94vh;
+    width: 18%;
     padding-top: 3vh;
     padding-bottom: 3vh;
 }
@@ -135,4 +153,79 @@ a {
 
 .logout-button:hover {
     cursor: pointer;
+}
+
+.main-content {
+    height: fit-content;
+    width: 100%;
+    padding: 3%;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: fit-content;
+
+    padding: 0% 0% 4% 0%;
+}
+
+.profile-tile-image {
+    height: 30px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.profile-tile-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 2%;
+}
+
+h3 {
+    color: white;
+    font-size: 13px;
+    font-family: Regular-Font;
+}
+
+.image-content {
+    padding: 2%;
+}
+
+.profile-content-image {
+    height: 500px;
+}
+
+.caption-content {
+    padding: 0% 2%;
+}
+
+h4 {
+    font-family: Regular-Font;
+    color: white;
+    font-size: 15px;
+}
+
+.time-content {
+    padding: 1% 2%;
+}
+
+h5 {
+    font-family: Thin-Font;
+    color: white;
+    font-size: 8px;
+}
+
+.line-end {
+    padding: 3% 2%;
+    width: 100%;
+    height: fit-content;
+}
+
+.line-2 {
+    width: 100%;
+    height: 1px;
+    background-color: #444444;
 }

@@ -46,5 +46,58 @@
             </a>
         </div>
     </div>
+
+    <div class="spacing"></div>
+
+    <div class="main-content">
+        <div class="post-content">
+            <div class="profile-tile-content">
+                <img src="../assets/images/wony.jpg" alt="" class="profile-tile-image">
+                <div class="username-text">
+                    <h3>wonyoung_cantik</h3>
+                </div>
+            </div>
+    
+            <div class="image-content">
+                <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+            </div>
+    
+            <div class="caption-content">
+                <h4>I love this anime.</h4>
+            </div>
+            
+            <div class="time-content">
+                <h5>10 October 2023</h5>
+            </div>
+
+            <div class="line-end">
+                <div class="line-2"></div>
+            </div>
+        </div>
+        <div class="post-content">
+            <div class="profile-tile-content">
+                <img src="../assets/images/wony.jpg" alt="" class="profile-tile-image">
+                <div class="username-text">
+                    <h3>wonyoung_cantik</h3>
+                </div>
+            </div>
+    
+            <div class="image-content">
+                <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+            </div>
+    
+            <div class="caption-content">
+                <h4>I love this anime.</h4>
+            </div>
+            
+            <div class="time-content">
+                <h5>10 October 2023</h5>
+            </div>
+            
+            <div class="line-end">
+                <div class="line-2"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
