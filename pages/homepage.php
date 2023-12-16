@@ -12,6 +12,13 @@
             <img src="../assets/images/logo-colorized.png" alt="" class="logo-image">
         </div>
 
+        <div class="profile-wrapper">
+            <a href="" class="profile-wrapper-a">
+                <img src="../assets/images/wony.jpg" alt="" class="profile-image">
+                <h2 class="profile-text">Profile</h2>
+            </a>
+        </div>
+
         <div class="navbar-tile">
             <a href="">
                 <div class="tile-active">
