@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage | Vibe Flow</title>
-    <link rel="stylesheet" href="../style/homepage-style.css">
+    <title>Settings | Vibe Flow</title>
+    <link rel="stylesheet" href="../style/settings-page-style.css">
 </head>
 <body>
     <div class="navbar">
@@ -13,8 +13,8 @@
         </div>
 
         <div class="navbar-tile">
-            <a href="">
-                <div class="tile-active">
+            <a href="homepage.php">
+                <div class="tile-unactive">
                     <img src="../assets/images/home.png" alt="" class="icon">
                     <h2>Home</h2>
                 </div>
@@ -26,7 +26,7 @@
                 </div>
             </a>
             <a href="settings-page.php">
-                <div class="tile-unactive">
+                <div class="tile-active">
                     <img src="../assets/images/settings.png" alt="" class="icon">
                     <h2>Settings</h2>
                 </div>
