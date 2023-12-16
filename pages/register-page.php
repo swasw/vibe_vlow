@@ -14,7 +14,7 @@
         <img src="../assets/images/logo-colorized.png" alt="" class="image-logo">
 
         <div class="contain-wrapper">
-        <form class="content" action="register_con.php" method="post">
+        <form class="contain-wrapper" action="register_con.php" method="post">
             <h1>Register</h1>
             <div class="field-wrapper">
                 <div class="textfield-wrapper">

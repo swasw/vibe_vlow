@@ -9,17 +9,17 @@
 <body>
     <div class="all-wrapper">
         <img src="../assets/images/logo-colorized.png" alt="" class="image-logo">
-
+        <form action="login_con.php" method="post" class="all-wrapper">
         <div class="contain-wrapper">
             <h1>Login</h1>
             <div class="field-wrapper">
                 <div class="textfield-wrapper">
                     <h2>Username</h2>
-                    <input type="text" class="text-field">
+                    <input type="text" class="text-field" name = 'username'>
                 </div>
                 <div class="textfield-wrapper">
                     <h2>Password</h2>
-                    <input type="text" class="text-field">
+                    <input type="text" class="text-field" name = 'password'>
                     <a href="#">
                         <div class="forgot-wrapper">
                             <h3>Forgot Password?</h3>
@@ -50,6 +50,7 @@
                 </div>
             </a>
         </div>
+        </form>
     </div>
 </body>
 </html>
