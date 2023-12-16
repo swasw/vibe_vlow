@@ -13,7 +13,7 @@
         </div>
 
         <div class="profile-wrapper">
-            <a href="" class="profile-wrapper-a">
+            <a href="profile-page.php" class="profile-wrapper-a">
                 <img src="../assets/images/wony.jpg" alt="" class="profile-image">
                 <h2 class="profile-text">Profile</h2>
             </a>
