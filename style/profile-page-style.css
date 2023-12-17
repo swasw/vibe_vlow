@@ -76,13 +76,10 @@ a {
 }
 
 .profile-wrapper {
+    background-color: #222222;
     width: auto;
     margin-top: 15%;
     border-radius: 25px 0px 0px 25px;
-
-}
-.profile-wrapper:hover {
-    background-color: #161616;
 }
 
 .profile-text {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search | Vibe Flow</title>
-    <link rel="stylesheet" href="../style/homepage-style.css">
+    <link rel="stylesheet" href="../style/search-page-style.css">
 </head>
 <body>
     <div class="navbar">
@@ -26,7 +26,7 @@
                     <h2>Home</h2>
                 </div>
             </a>
-            <a href="">
+            <a href="search-page.php">
                 <div class="tile-active">
                     <img src="../assets/images/search.png" alt="" class="icon">
                     <h2>Search</h2>

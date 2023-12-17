@@ -56,7 +56,7 @@ a {
     flex-direction: column;
 
     height: 94vh;
-    width: 18%;
+    width: 30%;
     padding-top: 3vh;
     padding-bottom: 3vh;
 }
@@ -228,4 +228,124 @@ h5 {
     width: 100%;
     height: 1px;
     background-color: #444444;
+}
+
+.side-profile-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.side-profile-content {
+    width: 20%;
+    padding: 3%;
+}
+
+.side-profile-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-wrapper-img {
+    height: 50px;
+    border-radius: 100%;
+}
+
+.text-profile-wrapper {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-text {
+    font-size: 18px;
+    background-image: linear-gradient(to right, #DD57F3, #FC354A);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 2px 5px;
+
+    font-family: Medium-Font;
+}
+
+.second-text {
+    font-size: 10px;
+    color: #666666;
+    padding: 2px 5px;
+
+    font-family: Regular-Font;
+}
+
+.friend-list-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 50px;
+}
+
+.friend-text {
+    font-size: 18px;
+    color: #666666;
+
+    font-family: Medium-Font;
+}
+
+.friend-list {
+    margin-top: 30px;
+}
+
+.tile-friend-list {
+    padding: 0px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.first-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.image-crop {
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.tile-profile-img {
+    width: 100%;
+    height: auto;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.friend-name {
+    margin-left: 10px;
+    font-size: 16px;
+    color: white;
+}
+
+.see-profile {
+    font-size: 10px;
+
+    background-image: linear-gradient(to right, #DD57F3, #FC354A);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.a-friend-list {
+    width: fit-content;
+}
+
+.side-spacing {
 }
