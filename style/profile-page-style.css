@@ -238,10 +238,17 @@ h3 {
 
 .image-content {
     margin-top: 40px;
+    height: 400px;
+    width: 400px;
+
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .profile-content-image {
     width: 100%;
+
+    object-fit: cover;
 }
 
 .caption-content {
