@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Vibe Flow</title>
-    <link rel="stylesheet" href="../style/profile-page-style.css">
+    <title>User Profile | Vibe Flow</title>
+    <link rel="stylesheet" href="../style/user-profile-style.css">
 </head>
 <body>
 
@@ -21,19 +21,6 @@
     
             <div class="friend-list-wrapper">
                 <h6 class="friend-text">Friend</h6>
-                <div class="friend-list">
-                    <div class="tile-friend-list">
-                        <div class="first-column">
-                            <div class="image-crop">
-                                <img src="../assets/images/yujin.jpeg" alt="" class="tile-profile-img">
-                            </div>
-                            <h6 class="friend-name">ahn_yujin</h6>
-                        </div>
-                        <a href="" class="a-friend-list">
-                            <h6 class="see-profile">see profile</h6>
-                        </a>
-                    </div>
-                </div>
                 <div class="friend-list">
                     <div class="tile-friend-list">
                         <div class="first-column">
@@ -71,7 +58,7 @@
 
         <div class="navbar-tile">
             <a href="profile-page.php">
-                <div class="tile-active">
+                <div class="tile-unactive">
                     <img src="../assets/images/wony.jpg" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
@@ -113,26 +100,26 @@
     <div class="spacing"></div>
 
     <div class="main-content">
-        <h4 class="header-main-content">@wonyoung_cantik</h4>
+        <h4 class="header-main-content">@ahn_yujin</h4>
         <div class="wrapper-main">
             <div class="profile-container-top">
                 <div class="image-container">
-                    <img src="../assets/images/wony.jpg" alt="" class="content-profile-img">
+                    <img src="../assets/images/yujin.jpeg" alt="" class="content-profile-img">
                 </div>
-                <h4 class="profile-name">Jang Wonyoung</h4>
+                <h4 class="profile-name">Ahn Yujin</h4>
             </div>
-            <div class="button-profile-edit">
+            <!-- <div class="button-profile-edit">
                 <a href="edit-profile-page.php" class="profile-edit-a">
                     <button class="button-profile">Edit Profile</button>
                 </a>
-            </div>
+            </div> -->
 
             <div class="line-between"></div>
 
             <div class="post-content-wrapper">
                 <div class="post-content">
                     <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+                        <img src="../assets/images/content2.jpeg" alt="" class="profile-content-image">
                     </div>
         
                     <div class="caption-content">
@@ -145,7 +132,7 @@
                 </div>
                 <div class="post-content">
                     <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+                        <img src="../assets/images/content2.jpeg" alt="" class="profile-content-image">
                     </div>
         
                     <div class="caption-content">

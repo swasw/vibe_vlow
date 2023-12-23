@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting Username and Password | Vibe Flow</title>
-    <link rel="stylesheet" href="../style/setting-change-user-style.css">
+    <link rel="stylesheet" href="../style/edit-profile-page-style.css">
 </head>
 <body>
     <div class="navbar">
@@ -58,9 +58,22 @@
     <div class="main-content">
         <div class="setting-wrapper">
             <div class="setting-title">
-                <h4 class="title-text-setting">Change Username and Password</h4>
+                <h4 class="title-text-setting">Edit Profile</h4>
             </div>
 
+            <div class="field-wrapper">
+                <div class="field">
+                    <div class="image-profile-container">
+                        <label for="photo-change" class="label-photo">
+                            <h4 class="change-photo-text">Change Photo</h4>
+                            <img src="../assets/images/wony.jpg" alt="" class="image-profile-pic">
+                        </label>
+                    </div>
+                </div>
+                
+
+                <input type="file" id="photo-change" class="file-image-input">
+            </div>
             <div class="field-wrapper">
                 <div class="field">
                     <h4 class="title-field">Username</h4>
