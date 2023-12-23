@@ -1,3 +1,16 @@
+<?php
+    $connection = mysqli_connect("localhost","root","","vibevlow");
+    // if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['hapus'])) {
+    //     $id = $_GET['hapus'];
+    //     $query = "DELETE FROM data_dasar WHERE ID = $id";
+    //     mysqli_query($connection, $query);
+    //     header("Location: index.php");
+    //     exit;
+    // }
+    $getsql = "SELECT * FROM `post` ORDER BY id DESC";
+    $data = mysqli_query($connection, $getsql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,31 +124,41 @@
 
     <div class="spacing"></div>
 
+    
     <div class="main-content">
+    <?php
+        while($row = mysqli_fetch_assoc($data)) :
+            $imageData = $row['post'];
+            $base64Image = base64_encode($imageData);
+    ?>
         <div class="post-content">
             <div class="profile-tile-content">
                 <img src="../assets/images/wony.jpg" alt="" class="profile-tile-image">
                 <div class="username-text">
-                    <h3>wonyoung_cantik</h3>
+                    <h3><?=$row["username"];?></h3>
                 </div>
             </div>
     
             <div class="image-content">
-                <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+                <img src="data:image/jpg;base64,<?= base64_encode($row["post"]); ?>" alt="" class="profile-content-image">
             </div>
     
             <div class="caption-content">
-                <h4>I love this anime.</h4>
+                <h4><?=$row["caption"];?></h4>
             </div>
             
             <div class="time-content">
-                <h5>10 October 2023</h5>
+                <h5><?=$row["time_stamp"];?></h5>
             </div>
 
             <div class="line-end">
                 <div class="line-2"></div>
             </div>
+            <?php
+                endwhile;
+            ?>
         </div>
+        
         <div class="post-content">
             <div class="profile-tile-content">
                 <img src="../assets/images/wony.jpg" alt="" class="profile-tile-image">
