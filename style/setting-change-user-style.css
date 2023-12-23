@@ -267,7 +267,7 @@ h5 {
 }
 
 .title-text-setting {
-    font-size: 30px;
+    font-size: 28px;
     font-family: Bold-Font;
 }
 
@@ -280,7 +280,7 @@ h5 {
 }
 
 .setting-title {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .setting-tile-text {
@@ -295,4 +295,49 @@ h5 {
 
 .a-setting-tile {
     width: fit-content;
+}
+
+.field-wrapper {
+    width: 40%;
+}
+
+.title-field {
+    font-size: 15px;
+    font-family: Regular-Font;
+}
+
+.field-input {
+    width: 94%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 2% 3%;
+
+    outline: none;
+    border: none;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-family: Medium-Font;
+}
+
+.field-button {
+    width: 100%;
+
+    display: flex;
+    justify-content: end;
+}
+
+.save-change {
+    padding: 13px 25px;
+    background-image: linear-gradient(to right, #DD57F3, #FC354A);
+    
+    font-size: 13px;
+    color: white;
+    font-family: Bold-Font;
+
+    outline: none;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
 }

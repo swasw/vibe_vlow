@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings | Vibe Flow</title>
-    <link rel="stylesheet" href="../style/settings-page-style.css">
+    <title>Setting Username and Password | Vibe Flow</title>
+    <link rel="stylesheet" href="../style/setting-change-user-style.css">
 </head>
 <body>
     <div class="navbar">
@@ -32,7 +32,7 @@
                 </div>
             </a>
             <a href="settings-page.php">
-                <div class="tile-active">
+                <div class="tile-unactive">
                     <img src="../assets/images/settings.png" alt="" class="icon">
                     <h2>Settings</h2>
                 </div>
@@ -58,16 +58,25 @@
     <div class="main-content">
         <div class="setting-wrapper">
             <div class="setting-title">
-                <h4 class="title-text-setting">Settings</h4>
+                <h4 class="title-text-setting">Change Username and Password</h4>
             </div>
 
-            <div class="setting-tile-wrapper">
-                <a href="setting-change-user.php" class="a-setting-tile">
-                    <h4 class="setting-tile-text">Change Username and Password</h4>
-                </a>
-                <a href="setting-change-user.php" class="a-setting-tile">
-                    <h4 class="setting-icon">></h4>
-                </a>
+            <div class="field-wrapper">
+                <div class="field">
+                    <h4 class="title-field">Username</h4>
+                    <input type="text" class="field-input">
+                </div>
+            </div>
+            <div class="field-wrapper">
+                <div class="field">
+                    <h4 class="title-field">Password</h4>
+                    <input type="text" class="field-input">
+                </div>
+            </div>
+            <div class="field-wrapper">
+                <div class="field-button">
+                    <button type="submit" class="save-change">Save Change</button>
+                </div>
             </div>
         </div>
     </div>

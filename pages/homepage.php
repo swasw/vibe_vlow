@@ -62,21 +62,20 @@
                 </div>
             </div>
         </div>    
-    </div>
+</div>
     <div class="navbar">
         <div class="navbar-logo">
             <img src="../assets/images/logo-colorized.png" alt="" class="logo-image">
         </div>
 
-        <div class="profile-wrapper">
-            <a href="profile-page.php" class="profile-wrapper-a">
-                <img src="../assets/images/wony.jpg" alt="" class="profile-image">
-                <h2 class="profile-text">Profile</h2>
-            </a>
-        </div>
-
         <div class="navbar-tile">
-            <a href="">
+            <a href="profile-page.php">
+                <div class="tile-unactive">
+                    <img src="../assets/images/wony.jpg" alt="" class="profile-image">
+                    <h2 class="profile-text">Profile</h2>
+                </div>
+            </a>
+            <a href="homepage.php">
                 <div class="tile-active">
                     <img src="../assets/images/home.png" alt="" class="icon">
                     <h2>Home</h2>
@@ -97,9 +96,16 @@
         </div>
 
         <div class="logout-button-wrapper">
-            <a href="" class="button-a">
-                <button class="logout-button">Log out</button>
-            </a>
+            <div class="button-a-wrapper">
+                <a href="add-post-page.php" class="button-a">
+                    <button class="add-post-button">+ Add post</button>
+                </a>
+            </div>
+            <div class="button-a-wrapper">
+                <a href="login-page.php" class="button-a">
+                    <button class="logout-button">Log out</button>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -137,7 +143,6 @@
                     <h3>wonyoung_cantik</h3>
                 </div>
             </div>
-    
             <div class="image-content">
                 <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
             </div>

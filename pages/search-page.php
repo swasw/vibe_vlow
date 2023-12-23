@@ -12,14 +12,13 @@
             <img src="../assets/images/logo-colorized.png" alt="" class="logo-image">
         </div>
 
-        <div class="profile-wrapper">
-            <a href="profile-page.php" class="profile-wrapper-a">
-                <img src="../assets/images/wony.jpg" alt="" class="profile-image">
-                <h2 class="profile-text">Profile</h2>
-            </a>
-        </div>
-
         <div class="navbar-tile">
+            <a href="profile-page.php">
+                <div class="tile-unactive">
+                    <img src="../assets/images/wony.jpg" alt="" class="profile-image">
+                    <h2 class="profile-text">Profile</h2>
+                </div>
+            </a>
             <a href="homepage.php">
                 <div class="tile-unactive">
                     <img src="../assets/images/home.png" alt="" class="icon">
@@ -41,14 +40,57 @@
         </div>
 
         <div class="logout-button-wrapper">
-            <a href="" class="button-a">
-                <button class="logout-button">Log out</button>
-            </a>
+            <div class="button-a-wrapper">
+                <a href="add-post-page.php" class="button-a">
+                    <button class="add-post-button">+ Add post</button>
+                </a>
+            </div>
+            <div class="button-a-wrapper">
+                <a href="login-page.php" class="button-a">
+                    <button class="logout-button">Log out</button>
+                </a>
+            </div>
         </div>
     </div>
 
     <div class="spacing"></div>
 
+    <div class="main-content">
+        <div class="search-wrapper">
+            <div class="search-title-wrapper">
+                <h4 class="title-search-text">Search</h4>
+            </div>
+        </div>
+
+        <div class="searchbar-wrapper">
+            <div class="searchbar">
+                <input type="text" class="text-searchbar" placeholder="Search user...">
+            </div>
+            <a href="" class="a-searchbar">
+                <div class="searchbar-icon">
+                    <img src="../assets/images/search.png" alt="" class="search-icon">
+                </div>
+            </a>
+        </div>
+
+        <div class="search-result-wrapper">
+            <h4 class="search-result-text">Search Result</h4>
+        </div>
+
+        <div class="search-result-tile">
+            <a href="" class="a-search">
+                <div class="tile-image-wrapper">
+                    <img src="../assets/images/wony.jpg" alt="" class="tile-image">
+                </div>
+            </a>
+
+            <a href="" class="a-search">
+                <div class="result-text-wrapper">
+                    <h4 class="result-text">wonyoung_cantik</h4>
+                </div>
+            </a>
+        </div>
+    </div>
     
 </body>
 </html>

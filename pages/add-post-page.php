@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Vibe Flow</title>
-    <link rel="stylesheet" href="../style/profile-page-style.css">
+    <title>+ Add Post | Vibe Flow</title>
+    <link rel="stylesheet" href="../style/add-post-page-style.css">
 </head>
 <body>
-
-    <div class="side-profile-container">
+<div class="side-profile-container">
         <div class="side-profile-content">
             <div class="side-profile-wrapper">
                 <img src="../assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
@@ -62,8 +61,7 @@
                 </div>
             </div>
         </div>    
-    </div>
-
+</div>
     <div class="navbar">
         <div class="navbar-logo">
             <img src="../assets/images/logo-colorized.png" alt="" class="logo-image">
@@ -71,7 +69,7 @@
 
         <div class="navbar-tile">
             <a href="profile-page.php">
-                <div class="tile-active">
+                <div class="tile-unactive">
                     <img src="../assets/images/wony.jpg" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
@@ -113,53 +111,31 @@
     <div class="spacing"></div>
 
     <div class="main-content">
-        <h4 class="header-main-content">@wonyoung_cantik</h4>
-        <div class="wrapper-main">
-            <div class="profile-container-top">
-                <div class="image-container">
-                    <img src="../assets/images/wony.jpg" alt="" class="content-profile-img">
-                </div>
-                <h4 class="profile-name">Jang Wonyoung</h4>
-            </div>
-            <div class="button-profile-edit">
-                <a href="#" class="profile-edit-a">
-                    <button class="button-profile">Edit Profile</button>
-                </a>
+        <div class="add-post-wrapper">
+            <h4 class="header-text-add-post">Post Media</h4>
+            <div class="media-wrapper">
+                <label for="file-upload" class="label-upload">
+                    <div class="media-image-add">
+                        <h4 class="media-add-text-1">+Add Image</h4>
+                        <h4 class="media-add-text-2">Choose Image</h4>
+                    </div>
+                </label>
+                <input id="file-upload" type="file" class="input-file">
             </div>
 
-            <div class="line-between"></div>
+            <div class="caption-wrapper">
+                <h4 class="caption-text">Caption</h4>
+                <div class="input-caption-wrapper">
+                    <input type="text" class="input-caption">
+                </div>
+            </div>
 
-            <div class="post-content-wrapper">
-                <div class="post-content">
-                    <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
-                    </div>
-        
-                    <div class="caption-content">
-                        <h4>I love this anime.</h4>
-                    </div>
-                
-                    <div class="time-content">
-                        <h5>10 October 2023</h5>
-                    </div>
-                </div>
-                <div class="post-content">
-                    <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
-                    </div>
-        
-                    <div class="caption-content">
-                        <h4>I love this anime.</h4>
-                    </div>
-                
-                    <div class="time-content">
-                        <h5>10 October 2023</h5>
-                    </div>
-                </div>
+            <div class="submit-button-wrapper">
+                <button class="submit-button">
+                    +Add Post
+                </button>
             </div>
         </div>
     </div>
-
-    
 </body>
 </html>
