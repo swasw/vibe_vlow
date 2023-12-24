@@ -1,4 +1,5 @@
 <?php
+// include 'current_user.php';
 session_start();
 require_once('dbcon.php'); 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_query = "SELECT * FROM `user_data` WHERE username ='$username' AND password ='$password'";
     $checked = $connection->query($check_query);
     if($checked->num_rows == 1){
+        $_SESSION['current_username'] = $username;
         header('Location: homepage.php');
         exit(); 
     }
@@ -76,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="container">
     <form id="login_form" class="form" action="login-page.php" method="post"><p>
-        <p class="top-text">Failed To Login</p>
+        <p class="top-text">Failed to Log in</p>
         <button class="submit_class">Back to Login</button>
     </p></form>
 </div>

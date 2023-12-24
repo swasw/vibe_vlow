@@ -1,4 +1,6 @@
 <?php
+session_start();
+$current_user = $_SESSION['current_username'];
     $connection = mysqli_connect("localhost","root","","vibevlow");
     // if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['hapus'])) {
     //     $id = $_GET['hapus'];
@@ -9,6 +11,9 @@
     // }
     $getsql = "SELECT * FROM `post` ORDER BY id DESC";
     $data = mysqli_query($connection, $getsql);
+    $get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
+    $user_data = mysqli_query($connection, $get_user);
+    $users = mysqli_fetch_assoc($user_data)
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +29,11 @@
 <div class="side-profile-container">
         <div class="side-profile-content">
             <div class="side-profile-wrapper">
-                <img src="../assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
+                <img src="data:image/jpg;base64,<?= base64_encode($users["profile"]); ?>" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text">wonyoung_cantik</h6>
-                    <h6 class="second-text">Jang Wonyoung</h6>
+                    <h6 class="main-text"><?=$users['username']?></h6>
+                    <h6 class="second-text"><?=$users['name']?></h6>
                 </div>
             </div>
     
@@ -133,7 +138,7 @@
     ?>
         <div class="post-content">
             <div class="profile-tile-content">
-                <img src="../assets/images/wony.jpg" alt="" class="profile-tile-image">
+                <img src="data:image/jpg;base64,<?= base64_encode($row["foto_profil"]); ?>"alt="" class="profile-tile-image">
                 <div class="username-text">
                     <h3><?=$row["username"];?></h3>
                 </div>
