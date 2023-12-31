@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['logged_in'])){
-        header('location: login.php');
-    }
+    // if(!isset($_SESSION['logged_in'])){
+    //     header('location: login-page.php');
+    // }
 
 
     $connection = mysqli_connect("localhost","root","","vibevlow");
@@ -136,11 +136,15 @@
     <?php
         while($row = mysqli_fetch_assoc($data)) :
             $imageData = $row['post'];
+            $now_user = $row['username'];
             $base64Image = base64_encode($imageData);
+            $quer = "SELECT * FROM `user_data` WHERE username = '$now_user'";
+            $user_fetch = mysqli_query($connection, $quer);
+            $datas = mysqli_fetch_assoc($user_fetch);
     ?>
         <div class="post-content">
             <div class="profile-tile-content">
-                <img src="assets/images/wony.jpg" alt="" class="profile-tile-image">
+                <img src="data:image/jpg;base64,<?= base64_encode($datas["profile_pic"]); ?>" alt="" class="profile-tile-image">
                 <div class="username-text">
                     <h3><?=$row["username"];?></h3>
                 </div>
