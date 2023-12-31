@@ -1,34 +1,14 @@
-<?php
-    session_start();
-
-    // if(!isset($_SESSION['logged_in'])){
-    //     header('location: login-page.php');
-    // }
-
-
-    $connection = mysqli_connect("localhost","root","","vibevlow");
-    // if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['hapus'])) {
-    //     $id = $_GET['hapus'];
-    //     $query = "DELETE FROM data_dasar WHERE ID = $id";
-    //     mysqli_query($connection, $query);
-    //     header("Location: index.php");
-    //     exit;
-    // }
-    $getsql = "SELECT * FROM `post` ORDER BY id DESC";
-    $data = mysqli_query($connection, $getsql);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage | Vibe Flow</title>
-    <link rel="stylesheet" href="style/homepage-style.css">
+    <title>Profile | Vibe Flow</title>
+    <link rel="stylesheet" href="style/profile-page-style.css">
 </head>
 <body>
 
-<div class="side-profile-container">
+    <div class="side-profile-container">
         <div class="side-profile-content">
             <div class="side-profile-wrapper">
                 <img src="assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
@@ -82,21 +62,22 @@
                 </div>
             </div>
         </div>    
-</div>
+    </div>
+
     <div class="navbar">
         <div class="navbar-logo">
             <img src="assets/images/logo-colorized.png" alt="" class="logo-image">
         </div>
 
         <div class="navbar-tile">
-            <a href="profile-page.php">
-                <div class="tile-unactive">
+            <a href="#">
+                <div class="tile-active">
                     <img src="assets/images/wony.jpg" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
             <a href="homepage.php">
-                <div class="tile-active">
+                <div class="tile-unactive">
                     <img src="assets/images/home.png" alt="" class="icon">
                     <h2>Home</h2>
                 </div>
@@ -131,50 +112,49 @@
 
     <div class="spacing"></div>
 
-    
     <div class="main-content">
-    <?php
-        while($row = mysqli_fetch_assoc($data)) :
-            $imageData = $row['post'];
-            $now_user = $row['username'];
-            $base64Image = base64_encode($imageData);
-            $quer = "SELECT * FROM `user_data` WHERE username = '$now_user'";
-            $user_fetch = mysqli_query($connection, $quer);
-            $datas = mysqli_fetch_assoc($user_fetch);
-    ?>
-        <div class="post-content">
-            <div class="profile-tile-content">
-                <a href="person-profile.php" class="a-profile-tile">
-                    <div class="image-profile-person-wrapper">
-                        <img src="data:image/jpg;base64,<?= base64_encode($datas["profile_pic"]); ?>" alt="" class="profile-tile-image">
-                    </div>
-                    <div class="username-text">
-                        <h3><?=$row["username"];?></h3>
-                    </div>
-                </a>
-            </div>
-    
-            <div class="image-content">
-                <div class="image-post-wrapper">
-                    <img src="data:image/jpg;base64,<?= base64_encode($row["post"]); ?>" alt="" class="profile-content-image">
+        <h4 class="header-main-content">@wonyoung_cantik</h4>
+        <div class="wrapper-main">
+            <div class="profile-container-top">
+                <div class="image-container">
+                    <img src="../assets/images/wony.jpg" alt="" class="content-profile-img">
                 </div>
-            </div>
-    
-            <div class="caption-content">
-                <h4><?=$row["caption"];?></h4>
-            </div>
-            
-            <div class="time-content">
-                <h5><?=$row["time_stamp"];?></h5>
+                <h4 class="profile-name">Jang Wonyoung</h4>
             </div>
 
-            <div class="line-end">
-                <div class="line-2"></div>
+            <div class="line-between"></div>
+
+            <div class="post-content-wrapper">
+                <div class="post-content">
+                    <div class="image-content">
+                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+                    </div>
+        
+                    <div class="caption-content">
+                        <h4>I love this anime.</h4>
+                    </div>
+                
+                    <div class="time-content">
+                        <h5>10 October 2023</h5>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="image-content">
+                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
+                    </div>
+        
+                    <div class="caption-content">
+                        <h4>I love this anime.</h4>
+                    </div>
+                
+                    <div class="time-content">
+                        <h5>10 October 2023</h5>
+                    </div>
+                </div>
             </div>
-            <?php
-                endwhile;
-            ?>
         </div>
     </div>
+
+    
 </body>
 </html>

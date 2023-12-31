@@ -49,6 +49,8 @@ a {
     width: 15%;
     padding-top: 3vh;
     padding-bottom: 3vh;
+
+    z-index: 3;
 }
 
 .spacing {
@@ -187,6 +189,16 @@ a {
     height: fit-content;
     width: 100%;
     padding: 3%;
+
+    z-index: 2;
+}
+
+.a-profile-tile {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: fit-content;
 }
 
 .post-content {
@@ -200,8 +212,20 @@ a {
 
 .profile-tile-image {
     height: 30px;
+    width: 30px;
+    object-fit: cover;
+}
+
+.image-profile-person-wrapper {
+    height: 30px;
+    width: 30px;
+
+    display: flex;
     border-radius: 100%;
     margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .profile-tile-content {
@@ -278,6 +302,8 @@ h5 {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
+    z-index: 1;
 }
 
 .side-profile-content {

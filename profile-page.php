@@ -66,31 +66,31 @@
 
     <div class="navbar">
         <div class="navbar-logo">
-            <img src="../assets/images/logo-colorized.png" alt="" class="logo-image">
+            <img src="assets/images/logo-colorized.png" alt="" class="logo-image">
         </div>
 
         <div class="navbar-tile">
-            <a href="profile-page.php">
+            <a href="#">
                 <div class="tile-active">
-                    <img src="../assets/images/wony.jpg" alt="" class="profile-image">
+                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
             <a href="homepage.php">
                 <div class="tile-unactive">
-                    <img src="../assets/images/home.png" alt="" class="icon">
+                    <img src="assets/images/home.png" alt="" class="icon">
                     <h2>Home</h2>
                 </div>
             </a>
             <a href="search-page.php">
                 <div class="tile-unactive">
-                    <img src="../assets/images/search.png" alt="" class="icon">
+                    <img src="assets/images/search.png" alt="" class="icon">
                     <h2>Search</h2>
                 </div>
             </a>
             <a href="settings-page.php">
                 <div class="tile-unactive">
-                    <img src="../assets/images/settings.png" alt="" class="icon">
+                    <img src="assets/images/settings.png" alt="" class="icon">
                     <h2>Settings</h2>
                 </div>
             </a>
@@ -103,7 +103,7 @@
                 </a>
             </div>
             <div class="button-a-wrapper">
-                <a href="login-page.php" class="button-a">
+                <a href="logout.php" class="button-a">
                     <button class="logout-button">Log out</button>
                 </a>
             </div>
