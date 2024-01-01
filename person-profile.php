@@ -15,12 +15,20 @@ $getsql = "SELECT * FROM `post` WHERE username = '$clicked_user' ORDER BY id DES
 $data = mysqli_query($connection, $getsql);
 
 // validity
-$valids = "SELECT * FROM `friend_request` WHERE sender = '$clicked_user' OR receiver = '$clicked_user' AND `value` = true";
+$valids = "SELECT * FROM `friend_request` WHERE sender = '$clicked_user' OR receiver = '$clicked_user' AND `value` = 'true'";
 $fetch_valid = mysqli_query($connection, $valids);
+// sender valid
+$sender_q="SELECT * FROM `friend_request` WHERE sender = '$current_user' AND receiver = '$clicked_user' AND `value` = 'false'";
+$fetch_senderv = mysqli_query($connection, $valids);
 if($val = mysqli_fetch_assoc($fetch_valid)){
     $_SESSION['uname']=$current_user;
     $_SESSION['person'] = $clicked_user;
     header('Location: person-profile-friend.php');
+}
+else if($val = mysqli_fetch_assoc($fetch_senderv)){
+    $_SESSION['uname']=$current_user;
+    $_SESSION['person'] = $clicked_user;
+    header('Location: person-profile-sent.php');
 }
 ?>
 
@@ -149,7 +157,7 @@ if($val = mysqli_fetch_assoc($fetch_valid)){
                 <h4 class="profile-name"><?=$datas['name']?></h4>
             </div>
             <div class="button-profile-edit">
-                <a href="edit-profile-page.php" class="profile-edit-a">
+                <a href="add-friend.php?friend=<?=$datas['username']?>" class="profile-edit-a">
                     <button class="button-profile">+ Add Friend</button>
                 </a>
             </div>
