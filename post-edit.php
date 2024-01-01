@@ -24,24 +24,18 @@ if (isset($id)) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $caption = $_POST['caption'];
 
-    if (isset($_FILES['new_photo']) && $_FILES['new_photo']['size'] > 0) {
+    $updateQuery = "UPDATE `post` SET `caption` = '$caption' WHERE username = '$current_username'";
+    $updateResult = mysqli_query($connection, $updateQuery);
+    if (isset($_FILES['new_photo'])) {
         $image = $_FILES['new_photo']['tmp_name'];
         $imgContent = addslashes(file_get_contents($image));
-    } else {
-        // Jika tidak ada file yang diunggah, gunakan foto lama dari database
-        $imgContent = $row['post'];
-    }
 
-    $updateQuery = "UPDATE `post` SET `caption` = '$caption', `post` = '$imgContent' WHERE username = '$current_username'";
-    $updateResult = mysqli_query($connection, $updateQuery);
-    
-    if (!$updateResult) {
-        echo "Gagal memperbarui post.";
-    } else {
-        // Redirect ke halaman edit post
-        header('Location: post-edit.php?convert=' . $eid);
-        exit();
+        if ($imgContent) {
+            $updatePhotoQuery = "UPDATE `post` SET post = '$imgContent' WHERE username = '$current_username'";
+            $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
+        }
     }
+    header("Location: profile-page.php");
 }
 ?>
 
