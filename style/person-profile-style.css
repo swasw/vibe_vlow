@@ -320,6 +320,17 @@ h5 {
     color: white;
     background-image: linear-gradient(to right, #DD57F3, #FC354A);
 }
+.button-profile-done  {
+    width: 100%;
+    padding: 8px 0px;
+    border-radius: 8px;
+    font-size: 12px;
+    outline: none;
+    border: none;
+    
+    color: white;
+    background-color: #666666;
+}
 
 .button-profile:hover {
     cursor: pointer;

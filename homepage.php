@@ -142,6 +142,11 @@
                     <h2>Settings</h2>
                 </div>
             </a>
+            <a href="person-profile-friend.php">
+                <div class="tile-unactive">
+                    <h2>cobaah</h2>
+                </div>
+            </a>
         </div>
 
         <div class="logout-button-wrapper">
