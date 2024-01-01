@@ -83,32 +83,6 @@
                 <?php
                     endwhile;
                     ?>
-                <!-- <div class="friend-list">
-                    <div class="tile-friend-list">
-                        <div class="first-column">
-                            <div class="image-crop">
-                                <img src="assets/images/eunha.jpeg" alt="" class="tile-profile-img">
-                            </div>
-                            <h6 class="friend-name">jung_eunbi</h6>
-                        </div>
-                        <a href="" class="a-friend-list">
-                            <h6 class="see-profile">see profile</h6>
-                        </a>
-                    </div>
-                </div>
-                <div class="friend-list">
-                    <div class="tile-friend-list">
-                        <div class="first-column">
-                            <div class="image-crop">
-                                <img src="assets/images/heejin.jpeg" alt="" class="tile-profile-img">
-                            </div>
-                            <h6 class="friend-name">heejin__</h6>
-                        </div>
-                        <a href="" class="a-friend-list">
-                            <h6 class="see-profile">see profile</h6>
-                        </a>
-                    </div>
-                </div> -->
             </div>
         </div>    
 </div>
@@ -142,7 +116,7 @@
                     <h2>Settings</h2>
                 </div>
             </a>
-            <a href="person-profile-friend.php">
+            <a href="person-acc.php">
                 <div class="tile-unactive">
                     <h2>cobaah</h2>
                 </div>
