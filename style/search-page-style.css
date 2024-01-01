@@ -208,7 +208,6 @@ a {
 .profile-tile-image {
     height: 30px;
     border-radius: 100%;
-    margin-right: 10px;
 }
 
 .profile-tile-content {
@@ -352,6 +351,7 @@ h5 {
     display: flex;
     object-fit: cover;
     height: 100%;
+    width: 100%;
 }
 
 .result-text-wrapper {
@@ -360,4 +360,11 @@ h5 {
 
 .result-text {
     font-size: 15px;
+}
+
+.a-searchbar {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }

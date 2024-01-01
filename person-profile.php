@@ -22,7 +22,7 @@ $data = mysqli_query($connection, $getsql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$datas['username']?> Profile | Vibe Flow</title>
-    <link rel="stylesheet" href="style/profile-page-style.css">
+    <link rel="stylesheet" href="style/person-profile-style.css">
 </head>
 <body>
 
@@ -88,7 +88,7 @@ $data = mysqli_query($connection, $getsql);
         </div>
 
         <div class="navbar-tile">
-            <a href="#">
+            <a href="profile-page.php">
                 <div class="tile-unactive">
                     <img src="data:image/jpg;base64,<?= base64_encode($user_datas["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
@@ -150,12 +150,6 @@ $data = mysqli_query($connection, $getsql);
             <div class="post-content-wrapper">
             <?php
                 while($row = mysqli_fetch_assoc($data)) :
-                    // $imageData = $row['post'];
-                    // $now_user = $row['username'];
-                    // // $base64Image = base64_encode($imageData);
-                    // $queries = "SELECT * FROM `post` WHERE username = '$now_user'";
-                    // $fetch = mysqli_query($connection, $queries);
-                    // $post_datas = mysqli_fetch_assoc($fetch);
             ?>
                 <div class="post-content">
                     <div class="image-content">
@@ -173,19 +167,6 @@ $data = mysqli_query($connection, $getsql);
                 <?php
                 endwhile;
             ?>
-                <!-- <div class="post-content">
-                    <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
-                    </div>
-        
-                    <div class="caption-content">
-                        <h4>I love this anime.</h4>
-                    </div>
-                
-                    <div class="time-content">
-                        <h5>10 October 2023</h5>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
