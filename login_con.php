@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_query = "SELECT * FROM `user_data` WHERE username ='$username' AND password ='$password'";
     $checked = $connection->query($check_query);
     if($checked->num_rows == 1){
+        $_SESSION['uname']=$username;
         header('Location: homepage.php');
         exit(); 
     }

@@ -4,7 +4,12 @@ session_start();
 
 $connection = mysqli_connect("localhost","root","","vibevlow");
 
-
+$current_user = $_SESSION['uname'];
+$get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
+$user_data = mysqli_query($connection, $get_user);
+$users = mysqli_fetch_assoc($user_data);
+$getsql = "SELECT * FROM `post` WHERE username = '$current_user' ORDER BY id DESC";
+$data = mysqli_query($connection, $getsql);
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +25,11 @@ $connection = mysqli_connect("localhost","root","","vibevlow");
     <div class="side-profile-container">
         <div class="side-profile-content">
             <div class="side-profile-wrapper">
-                <img src="assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
+                <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text"><?php echo $_SESSION['uname']; ?></h6>
-                    <h6 class="second-text">Jang Wonyoung</h6>
+                    <h6 class="main-text"><?=$users['username']?></h6>
+                    <h6 class="second-text"><?=$users['name']?></h6>
                 </div>
             </div>
     
@@ -81,7 +86,7 @@ $connection = mysqli_connect("localhost","root","","vibevlow");
         <div class="navbar-tile">
             <a href="#">
                 <div class="tile-active">
-                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
@@ -126,9 +131,9 @@ $connection = mysqli_connect("localhost","root","","vibevlow");
         <div class="wrapper-main">
             <div class="profile-container-top">
                 <div class="image-container">
-                    <img src="../assets/images/wony.jpg" alt="" class="content-profile-img">
+                    <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="content-profile-img">
                 </div>
-                <h4 class="profile-name">Jang Wonyoung</h4>
+                <h4 class="profile-name"><?=$users['name']?></h4>
             </div>
             <div class="button-profile-edit">
                 <a href="edit-profile-page.php" class="profile-edit-a">
@@ -137,9 +142,34 @@ $connection = mysqli_connect("localhost","root","","vibevlow");
             </div>
 
             <div class="line-between"></div>
-
+            
             <div class="post-content-wrapper">
+            <?php
+                while($row = mysqli_fetch_assoc($data)) :
+                    $imageData = $row['post'];
+                    $now_user = $row['username'];
+                    $base64Image = base64_encode($imageData);
+                    $quer = "SELECT * FROM `user_data` WHERE username = '$now_user'";
+                    $user_fetch = mysqli_query($connection, $quer);
+                    $datas = mysqli_fetch_assoc($user_fetch);
+            ?>
                 <div class="post-content">
+                    <div class="image-content">
+                        <img src="data:image/jpg;base64,<?= base64_encode($row["post"]); ?>" alt="" class="profile-content-image">
+                    </div>
+        
+                    <div class="caption-content">
+                        <h4><?= $row['caption'];?></h4>
+                    </div>
+                
+                    <div class="time-content">
+                        <h5><?= $row['time_stamp'];?></h5>
+                    </div>
+                </div>
+                <?php
+                endwhile;
+            ?>
+                <!-- <div class="post-content">
                     <div class="image-content">
                         <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
                     </div>
@@ -152,20 +182,8 @@ $connection = mysqli_connect("localhost","root","","vibevlow");
                         <h5>10 October 2023</h5>
                     </div>
                 </div>
-                <div class="post-content">
-                    <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
-                    </div>
-        
-                    <div class="caption-content">
-                        <h4>I love this anime.</h4>
-                    </div>
-                
-                    <div class="time-content">
-                        <h5>10 October 2023</h5>
-                    </div>
-                </div>
-            </div>
+            </div> -->
+            
         </div>
     </div>
 
