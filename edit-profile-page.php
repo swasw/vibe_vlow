@@ -12,39 +12,36 @@ $getsql = "SELECT * FROM `post` WHERE username = '$current_user' ORDER BY id DES
 $data = mysqli_query($connection, $getsql);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $newUsername = $_POST['new_username'];
+    $newPassword = $_POST['new_password'];
 
-    // If a new username and password are submitted
-    if (isset($_POST['new_username']) && isset($_POST['new_password'])) {
-        $newUsername = $_POST['new_username'];
-        $newPassword = $_POST['new_password'];
+    $updateQuery = "UPDATE `user_data` SET username = '$newUsername', password = '$newPassword' WHERE username = '$current_user'";
+    $updateResult = mysqli_query($connection, $updateQuery);
 
-        $updateQuery = "UPDATE `user_data` SET username = '$newUsername', password = '$newPassword' WHERE username = '$current_user'";
-        $updateResult = mysqli_query($connection, $updateQuery);
-
-        if ($updateResult) {
-            $getUserQuery = "SELECT * FROM `user_data` WHERE username = '$newUsername'";
-            $updatedUserData = mysqli_query($connection, $getUserQuery);
-            $users = mysqli_fetch_assoc($updatedUserData);
-            $_SESSION['uname'] = $users['username'];
-            header('Location: profile-page.php');
-        } else {
-            echo "Gagal memperbarui data.";
-        }
-    }
-
-    if (isset($_FILES['new_photo'])) {
+    // if ($updateResult) {
+    //     $getUserQuery = "SELECT * FROM `user_data` WHERE username = '$newUsername'";
+    //     $updatedUserData = mysqli_query($connection, $getUserQuery);
+    //     $users = mysqli_fetch_assoc($updatedUserData);
+    //     $_SESSION['uname'] = $users['username'];
+    //     header('Location: profile-page.php');
+    // } else {
+    //     echo "Gagal memperbarui data.";
+    // }
+    if(isset($_FILES['new_photo'])) {
         $image = $_FILES['new_photo']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
-
-        if ($imgContent) {
-            $updatePhotoQuery = "UPDATE `user_data` SET profile_pic = '$imgContent' WHERE username = '$current_user'";
+        if ($image==null){
+            $_SESSION['uname'] = $newUsername;
+            header('Location: profile-page.php');
+        }
+        else if ($imgContent = addslashes(file_get_contents($image))) {
+            $updatePhotoQuery = "UPDATE `user_data` SET profile_pic = '$imgContent' WHERE username = '$newUsername'";
             $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
 
             if ($updatePhotoResult) {
                 $getUserQuery = "SELECT * FROM `user_data` WHERE username = '$current_user'";
                 $updatedUserData = mysqli_query($connection, $getUserQuery);
                 $users = mysqli_fetch_assoc($updatedUserData);
-                $_SESSION['uname'] = $users['username'];
+                $_SESSION['uname'] = $newUsername;
                 header('Location: profile-page.php');
             } else {
                 echo "Gagal memperbarui foto profil. Error: " . mysqli_error($connection);

@@ -121,7 +121,7 @@ if (isset($_GET['code'])) {
                 </div>
                 <div class="textfield-wrapper">
                     <h2>Password</h2>
-                    <input type="text" class="text-field" name = 'password'>
+                    <input type="password" class="text-field" name = 'password'>
                     <a href="#">
                         <div class="forgot-wrapper">
                             <h3>Forgot Password?</h3>
