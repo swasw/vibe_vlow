@@ -237,7 +237,6 @@ h3 {
 }
 
 .image-content {
-    margin-top: 40px;
     height: 400px;
     width: 400px;
 
@@ -508,4 +507,45 @@ h5 {
 
 .a-friend-list {
     width: fit-content;
+}
+
+.delete-wrapper {
+    margin-top: 40px;
+    margin-bottom: 5px;
+    width: 400px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.delete-text {
+    font-size: 10px;
+    color: rgb(220, 84, 84);
+}
+.edit-text {
+    font-size: 10px;
+    color: rgb(76, 76, 217);
+}
+.space-text {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 7px;
+    color: white;
+}
+
+.delete-button {
+    background: none;
+    outline: none;
+    border: none;
+}
+.delete-button:hover {
+    cursor: pointer;
+}
+.edit-button {
+    background: none;
+    outline: none;
+    border: none;
+}
+.edit-button:hover {
+    cursor: pointer;
 }

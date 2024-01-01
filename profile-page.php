@@ -10,6 +10,22 @@ $user_data = mysqli_query($connection, $get_user);
 $users = mysqli_fetch_assoc($user_data);
 $getsql = "SELECT * FROM `post` WHERE username = '$current_user' ORDER BY id DESC";
 $data = mysqli_query($connection, $getsql);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['delete_post'])) {
+        $post_id = $_POST['post_id'];
+        
+        $delete_query = "DELETE FROM `post` WHERE id = '$post_id'";
+        $delete_result = mysqli_query($connection, $delete_query);
+        
+        if ($delete_result) {
+            $_SESSION['uname']=$users['username'];
+            header('Location: profile-page.php');
+        } else {
+            echo "Gagal menghapus post.";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +44,7 @@ $data = mysqli_query($connection, $getsql);
                 <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text">@<?=$users['username']?></h6>
+                    <h6 class="main-text"><?=$users['username']?></h6>
                     <h6 class="second-text"><?=$users['name']?></h6>
                 </div>
             </div>
@@ -154,6 +170,20 @@ $data = mysqli_query($connection, $getsql);
                     $datas = mysqli_fetch_assoc($user_fetch);
             ?>
                 <div class="post-content">
+                    <form method="post">
+                        <div class="delete-wrapper">
+                            <input type="hidden" name="post_id" value="<?= $row['id']; ?>">
+                            <button type="submit" name="delete_post" class="delete-button">
+                                <h4 class="delete-text">Delete Post</h4>
+                            </button>
+    
+                            <!-- kabarin kalo aqil mau bikin logic edit postnya, gw bikinin pagenya -->
+                            <!-- <h4 class="space-text">|</h4>
+                            <button type="submit" class="edit-button">
+                                <h4 class="edit-text">Edit</h4>
+                            </button> -->
+                        </div>
+                    </form>
                     <div class="image-content">
                         <img src="data:image/jpg;base64,<?= base64_encode($row["post"]); ?>" alt="" class="profile-content-image">
                     </div>
@@ -169,20 +199,6 @@ $data = mysqli_query($connection, $getsql);
                 <?php
                 endwhile;
             ?>
-                <!-- <div class="post-content">
-                    <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
-                    </div>
-        
-                    <div class="caption-content">
-                        <h4>I love this anime.</h4>
-                    </div>
-                
-                    <div class="time-content">
-                        <h5>10 October 2023</h5>
-                    </div>
-                </div>
-            </div> -->
             
         </div>
     </div>
