@@ -174,14 +174,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="delete-wrapper">
                             <input type="hidden" name="post_id" value="<?= $row['id']; ?>">
                             <button type="submit" name="delete_post" class="delete-button">
-                                <h4 class="delete-text">Delete Post</h4>
+                                <h4 class="delete-text">Delete</h4>
                             </button>
-    
-                            <!-- kabarin kalo aqil mau bikin logic edit postnya, gw bikinin pagenya -->
-                            <!-- <h4 class="space-text">|</h4>
+                            <h4 class="space-text">|</h4>
                             <button type="submit" class="edit-button">
-                                <h4 class="edit-text">Edit</h4>
-                            </button> -->
+                                <a href="post-edit.php">
+                                    <h4 class="edit-text">Edit</h4>
+                                </a>
+                            </button>
                         </div>
                     </form>
                     <div class="image-content">
