@@ -95,7 +95,7 @@
         <div class="navbar-tile">
             <a href="profile-page.php">
                 <div class="tile-unactive">
-                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
@@ -148,7 +148,7 @@
     ?>
         <div class="post-content">
             <div class="profile-tile-content">
-                <a href="person-profile.php" class="a-profile-tile">
+                <a href="person-profile.php?person=<?=$now_user;?>" class="a-profile-tile">
                     <div class="image-profile-person-wrapper">
                         <img src="data:image/jpg;base64,<?= base64_encode($datas["profile_pic"]); ?>" alt="" class="profile-tile-image">
                     </div>

@@ -1,3 +1,21 @@
+<?php
+session_start();
+require_once('dbcon.php');
+$current_user=$_SESSION['uname'];
+$user_quer = "SELECT * FROM `user_data` WHERE username = '$current_user'";
+$users = mysqli_query($connection, $user_quer);
+$user_datas = mysqli_fetch_assoc($users);
+
+$clicked_user = $_GET['person']; 
+$quer = "SELECT * FROM `user_data` WHERE username = '$clicked_user'";
+$user_fetch = mysqli_query($connection, $quer);
+$datas = mysqli_fetch_assoc($user_fetch);
+
+$getsql = "SELECT * FROM `post` WHERE username = '$clicked_user' ORDER BY id DESC";
+$data = mysqli_query($connection, $getsql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +29,11 @@
     <div class="side-profile-container">
         <div class="side-profile-content">
             <div class="side-profile-wrapper">
-                <img src="assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
+                <img src="data:image/jpg;base64,<?= base64_encode($user_datas["profile_pic"]); ?>" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text">wonyoung_cantik</h6>
-                    <h6 class="second-text">Jang Wonyoung</h6>
+                    <h6 class="main-text"><?=$user_datas['username']?></h6>
+                    <h6 class="second-text"><?=$user_datas['name']?></h6>
                 </div>
             </div>
     
@@ -72,7 +90,7 @@
         <div class="navbar-tile">
             <a href="#">
                 <div class="tile-active">
-                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($user_datas["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
@@ -113,19 +131,44 @@
     <div class="spacing"></div>
 
     <div class="main-content">
-        <h4 class="header-main-content">@wonyoung_cantik</h4>
+        <h4 class="header-main-content">@<?=$datas['username']?></h4>
         <div class="wrapper-main">
             <div class="profile-container-top">
                 <div class="image-container">
-                    <img src="../assets/images/wony.jpg" alt="" class="content-profile-img">
+                    <img src="data:image/jpg;base64,<?= base64_encode($datas["profile_pic"]); ?>" alt="" class="content-profile-img">
                 </div>
-                <h4 class="profile-name">Jang Wonyoung</h4>
+                <h4 class="profile-name"><?=$datas['name']?></h4>
             </div>
 
             <div class="line-between"></div>
 
             <div class="post-content-wrapper">
+            <?php
+                while($row = mysqli_fetch_assoc($data)) :
+                    // $imageData = $row['post'];
+                    $now_user = $row['username'];
+                    // $base64Image = base64_encode($imageData);
+                    $queries = "SELECT * FROM `post` WHERE username = '$now_user'";
+                    $fetch = mysqli_query($connection, $queries);
+                    $post_datas = mysqli_fetch_assoc($fetch);
+            ?>
                 <div class="post-content">
+                    <div class="image-content">
+                        <img src="data:image/jpg;base64,<?= base64_encode($post_datas["post"]);?>" alt="" class="profile-content-image">
+                    </div>
+        
+                    <div class="caption-content">
+                        <h4><?=$post_datas['caption']?></h4>
+                    </div>
+                
+                    <div class="time-content">
+                        <h5><?=$post_datas['time_stamp']?></h5>
+                    </div>
+                </div>
+                <?php
+                endwhile;
+            ?>
+                <!-- <div class="post-content">
                     <div class="image-content">
                         <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
                     </div>
@@ -137,20 +180,7 @@
                     <div class="time-content">
                         <h5>10 October 2023</h5>
                     </div>
-                </div>
-                <div class="post-content">
-                    <div class="image-content">
-                        <img src="../assets/images/content.jpeg" alt="" class="profile-content-image">
-                    </div>
-        
-                    <div class="caption-content">
-                        <h4>I love this anime.</h4>
-                    </div>
-                
-                    <div class="time-content">
-                        <h5>10 October 2023</h5>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
