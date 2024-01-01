@@ -15,20 +15,43 @@ $getsql = "SELECT * FROM `post` WHERE username = '$clicked_user' ORDER BY id DES
 $data = mysqli_query($connection, $getsql);
 
 // validity
-$valids = "SELECT * FROM `friend_request` WHERE sender = '$clicked_user' OR receiver = '$clicked_user' AND `value` = 'true'";
+$valids = "SELECT * 
+FROM `friend_request` 
+WHERE (`sender` = '$clicked_user' AND `receiver`='$current_user' AND `value` = 'true' OR `sender` = '$current_user' AND `receiver`='$clicked_user' AND `value` = 'true') 
+      AND `value` = 'true'";
 $fetch_valid = mysqli_query($connection, $valids);
+// $val1 = mysqli_fetch_assoc($fetch_valid);
+
 // sender valid
-$sender_q="SELECT * FROM `friend_request` WHERE sender = '$current_user' AND receiver = '$clicked_user' AND `value` = 'false'";
-$fetch_senderv = mysqli_query($connection, $valids);
-if($val = mysqli_fetch_assoc($fetch_valid)){
+$sender_q="SELECT * 
+FROM `friend_request` 
+WHERE (`sender` = '$current_user' AND `receiver` = '$clicked_user') 
+      AND `value` = 'false'";
+$fetch_senderv = mysqli_query($connection, $sender_q);
+// $val2 = mysqli_fetch_assoc($fetch_senderv);
+
+// received valid
+$receiver_q="SELECT * 
+FROM `friend_request` 
+WHERE (`sender` = '$clicked_user' AND `receiver` = '$current_user') 
+      AND `value` = 'true'";
+$fetch_receiverv = mysqli_query($connection, $receiver_q);
+// $val3 = mysqli_fetch_assoc($fetch_receiverv);
+
+if(mysqli_num_rows($fetch_valid) > 0){
     $_SESSION['uname']=$current_user;
     $_SESSION['person'] = $clicked_user;
     header('Location: person-profile-friend.php');
 }
-else if($val = mysqli_fetch_assoc($fetch_senderv)){
+else if(mysqli_num_rows($fetch_senderv) > 0){
     $_SESSION['uname']=$current_user;
     $_SESSION['person'] = $clicked_user;
     header('Location: person-profile-sent.php');
+}
+else if(mysqli_num_rows($fetch_receiverv) > 0){
+    $_SESSION['uname']=$current_user;
+    $_SESSION['person'] = $clicked_user;
+    header('Location: person-acc.php');
 }
 ?>
 
@@ -156,12 +179,14 @@ else if($val = mysqli_fetch_assoc($fetch_senderv)){
                 </div>
                 <h4 class="profile-name"><?=$datas['name']?></h4>
             </div>
-            <div class="button-profile-edit">
-                <a href="add-friend.php?friend=<?=$datas['username']?>" class="profile-edit-a">
-                    <button class="button-profile">+ Add Friend</button>
-                </a>
-            </div>
+            <form action="person-addfriend.php" method="post">
+            <input type="hidden" name="uname" value="<?php echo $current_user; ?>">
+            <input type="hidden" name="person" value="<?php echo $clicked_user; ?>">
 
+            <div class="button-profile-edit">
+                <button class="button-profile" type="submit">+ Add Friend</button>
+            </div>
+            </form>
             <div class="line-between"></div>
 
             <div class="post-content-wrapper">
