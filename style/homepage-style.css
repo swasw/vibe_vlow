@@ -187,7 +187,7 @@ a {
 
 .main-content {
     height: fit-content;
-    width: 100%;
+    width: fit-content;
     padding: 3%;
 
     z-index: 2;
@@ -206,8 +206,6 @@ a {
     flex-direction: column;
     justify-content: flex-start;
     width: fit-content;
-
-    padding: 0% 0% 4% 0%;
 }
 
 .profile-tile-image {
@@ -232,8 +230,6 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-
-    padding: 2%;
 }
 
 h3 {
@@ -243,7 +239,8 @@ h3 {
 }
 
 .image-content {
-    padding: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .image-post-wrapper {
@@ -263,7 +260,7 @@ h3 {
 }
 
 .caption-content {
-    padding: 0% 2%;
+    margin-bottom: 5px;
 }
 
 h4 {
@@ -273,7 +270,7 @@ h4 {
 }
 
 .time-content {
-    padding: 1% 2%;
+    margin-bottom: 5px;
 }
 
 h5 {
@@ -283,7 +280,8 @@ h5 {
 }
 
 .line-end {
-    padding: 3% 2%;
+    margin-top: 10px;
+    margin-bottom: 40px;
     width: 100%;
     height: fit-content;
 }
