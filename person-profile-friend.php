@@ -6,13 +6,21 @@ $user_quer = "SELECT * FROM `user_data` WHERE username = '$current_user'";
 $users = mysqli_query($connection, $user_quer);
 $user_datas = mysqli_fetch_assoc($users);
 
-$clicked_user = $_GET['person']; 
+$clicked_user = $_SESSION['person']; 
 $quer = "SELECT * FROM `user_data` WHERE username = '$clicked_user'";
 $user_fetch = mysqli_query($connection, $quer);
 $datas = mysqli_fetch_assoc($user_fetch);
 
 $getsql = "SELECT * FROM `post` WHERE username = '$clicked_user' ORDER BY id DESC";
 $data = mysqli_query($connection, $getsql);
+
+// $valids = "SELECT * FROM `friend_request` WHERE sender = '$clicked_user' OR receiver = '$clicked_user' AND `value` = true";
+// $fetch_valid = mysqli_query($connection, $valids);
+// if($val = mysqli_fetch_assoc($fetch_valid)){
+//     $_SESSION['uname']=$current_user;
+//     $_SESSION['person'] = $clicked_user;
+//     header('Location: person-profile-friend.php');
+// }
 ?>
 
 
