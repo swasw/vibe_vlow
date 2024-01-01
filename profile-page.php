@@ -177,13 +177,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h4 class="delete-text">Delete</h4>
                             </button>
                             <h4 class="space-text">|</h4>
-
-=======
                             <a href="post-edit.php?convert=<?=$row['id'];?>">
-                                <button class="edit-button">Edit</button>
+                                <h4 class="edit-text">Edit</h4>
                             </a>
-                            
->>>>>>> c7e3a2c5b293e4c924371ea48818e134ffbdeeb4
                         </div>
                     </form>
                     <div class="image-content">

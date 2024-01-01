@@ -3,6 +3,7 @@ session_start();
 
 $connection = mysqli_connect("localhost", "root", "", "vibevlow");
 $id = $_GET['convert']; 
+
 if (isset($id)) {
     $eid = $id;
     $query = "SELECT * FROM post WHERE id = '$eid'";
@@ -16,23 +17,30 @@ if (isset($id)) {
     if (!$row) {
         die('Invalid Data');
     }
-    }
-else {
+} else {
     die("Data yang dimaksud tidak ada");
 }
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $caption = $_POST['caption'];
 
-    $updateQuery = "UPDATE `post` SET `caption` = '$caption' WHERE username = '$current_username'";
-    $updateResult = mysqli_query($connection, $updateQuery);
-    if (isset($_FILES['new_photo'])) {
+    if (isset($_FILES['new_photo']) && $_FILES['new_photo']['size'] > 0) {
         $image = $_FILES['new_photo']['tmp_name'];
         $imgContent = addslashes(file_get_contents($image));
+    } else {
+        // Jika tidak ada file yang diunggah, gunakan foto lama dari database
+        $imgContent = $row['post'];
+    }
 
-        if ($imgContent) {
-            $updatePhotoQuery = "UPDATE `post` SET post = '$imgContent' WHERE username = '$current_username'";
-            $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
-        }
+    $updateQuery = "UPDATE `post` SET `caption` = '$caption', `post` = '$imgContent' WHERE username = '$current_username'";
+    $updateResult = mysqli_query($connection, $updateQuery);
+    
+    if (!$updateResult) {
+        echo "Gagal memperbarui post.";
+    } else {
+        // Redirect ke halaman edit post
+        header('Location: post-edit.php?convert=' . $eid);
+        exit();
     }
 }
 ?>
@@ -111,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <div class="caption-wrapper">
                     <h4 class="caption-text">Caption</h4>
                     <div class="input-caption-wrapper">
-                        <input type="text" class="input-caption" name="caption" value="<?php echo $row['caption']; ?>">
+                        <input type="text" class="input-caption" name="caption" value="<?= $row['caption']; ?>">
                     </div>
                 </div>
     
