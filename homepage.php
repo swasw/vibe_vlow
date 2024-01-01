@@ -19,13 +19,13 @@
     $getsql = "SELECT * FROM `post` ORDER BY id DESC";
     $data = mysqli_query($connection, $getsql);
     // friends fetch
-    $getsql = "SELECT * 
+    $getfriend = "SELECT * 
     FROM `friend_request` 
     WHERE (`sender` = '$current_user' OR `receiver` = '$current_user') 
           AND `value` = 'true' 
     ORDER BY id DESC
     ";
-    $friends_data = mysqli_query($connection, $getsql);
+    $friends_data = mysqli_query($connection, $getfriend);
     // userdata fetch
     $get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
     $user_data = mysqli_query($connection, $get_user);
@@ -75,7 +75,7 @@
                             </div>
                             <h6 class="friend-name"><?=$frienddatas['username']?></h6>
                         </div>
-                        <a href="" class="a-friend-list">
+                        <a href="person-profile.php?person=<?=$frienddatas['username']?>" class="a-friend-list">
                             <h6 class="see-profile">see profile</h6>
                         </a>
                     </div>

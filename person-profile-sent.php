@@ -39,20 +39,43 @@ $data = mysqli_query($connection, $getsql);
     
             <div class="friend-list-wrapper">
                 <h6 class="friend-text">Friend</h6>
+                <?php
+                    // friends fetch
+                    $getfriend = "SELECT * 
+                    FROM `friend_request` 
+                    WHERE (`sender` = '$current_user' OR `receiver` = '$current_user') 
+                        AND `value` = 'true' 
+                    ORDER BY id DESC
+                    ";
+                    $friends_data = mysqli_query($connection, $getfriend);
+                    while($friends = mysqli_fetch_assoc($friends_data)):
+                        if($current_user==$friends['sender']){
+                            $friend_id = $friends['receiver'];
+                        }
+                        else{
+                            $friend_id = $friends['sender'];
+                        }
+                        $fquer = "SELECT * FROM `user_data` WHERE username = '$friend_id'";
+                        $friend_fetch = mysqli_query($connection, $fquer);
+                        $frienddatas = mysqli_fetch_assoc($friend_fetch);
+                ?>
                 <div class="friend-list">
                     <div class="tile-friend-list">
                         <div class="first-column">
                             <div class="image-crop">
-                                <img src="assets/images/yujin.jpeg" alt="" class="tile-profile-img">
+                                <img src="data:image/jpg;base64,<?= base64_encode($frienddatas["profile_pic"]); ?>" alt="" class="tile-profile-img">
                             </div>
-                            <h6 class="friend-name">ahn_yujin</h6>
+                            <h6 class="friend-name"><?=$frienddatas['username']?></h6>
                         </div>
-                        <a href="" class="a-friend-list">
+                        <a href="person-profile.php?person=<?=$frienddatas['username']?>" class="a-friend-list">
                             <h6 class="see-profile">see profile</h6>
                         </a>
                     </div>
                 </div>
-                <div class="friend-list">
+                <?php
+                endwhile;
+                ?>
+                <!-- <div class="friend-list">
                     <div class="tile-friend-list">
                         <div class="first-column">
                             <div class="image-crop">
@@ -77,7 +100,7 @@ $data = mysqli_query($connection, $getsql);
                             <h6 class="see-profile">see profile</h6>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>    
     </div>
