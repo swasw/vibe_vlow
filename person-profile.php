@@ -34,7 +34,7 @@ $fetch_senderv = mysqli_query($connection, $sender_q);
 $receiver_q="SELECT * 
 FROM `friend_request` 
 WHERE (`sender` = '$clicked_user' AND `receiver` = '$current_user') 
-      AND `value` = 'true'";
+      AND `value` = 'false'";
 $fetch_receiverv = mysqli_query($connection, $receiver_q);
 // $val3 = mysqli_fetch_assoc($fetch_receiverv);
 

@@ -139,10 +139,13 @@ $data = mysqli_query($connection, $getsql);
                 </div>
                 <h4 class="profile-name"><?=$datas['name']?></h4>
             </div>
+            <form action="acc-con.php" method="post">
+            <input type="hidden" name="uname" value="<?php echo $current_user; ?>">
+            <input type="hidden" name="person" value="<?php echo $clicked_user; ?>">
             <div class="button-profile-edit">
                 <button class="button-profile" type="submit">Accept Friend Request</button>
             </div>
-
+            </form>
             <div class="line-between"></div>
 
             <div class="post-content-wrapper">
