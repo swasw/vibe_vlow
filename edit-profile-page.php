@@ -12,21 +12,20 @@ $getsql = "SELECT * FROM `post` WHERE username = '$current_user' ORDER BY id DES
 $data = mysqli_query($connection, $getsql);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil data yang diubah dari formulir
+
     $newUsername = $_POST['new_username'];
     $newPassword = $_POST['new_password'];
 
-    // Perbarui data pengguna di database
     $updateQuery = "UPDATE `user_data` SET username = '$newUsername', password = '$newPassword' WHERE username = '$current_user'";
     $updateResult = mysqli_query($connection, $updateQuery);
 
     if ($updateResult) {
-        // Jika berhasil diperbarui, dapatkan data terbaru
         $getUserQuery = "SELECT * FROM `user_data` WHERE username = '$newUsername'";
         $updatedUserData = mysqli_query($connection, $getUserQuery);
         $users = mysqli_fetch_assoc($updatedUserData);
+        $_SESSION['uname']=$users['username'];
+        header('Location: profile-page.php');
     } else {
-        // Handle kesalahan jika perbaruan gagal
         echo "Gagal memperbarui data.";
     }
 }

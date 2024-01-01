@@ -28,7 +28,7 @@ $data = mysqli_query($connection, $getsql);
                 <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text"><?=$users['username']?></h6>
+                    <h6 class="main-text">@<?=$users['username']?></h6>
                     <h6 class="second-text"><?=$users['name']?></h6>
                 </div>
             </div>
@@ -127,7 +127,7 @@ $data = mysqli_query($connection, $getsql);
     <div class="spacing"></div>
 
     <div class="main-content">
-        <h4 class="header-main-content"> <?php echo $_SESSION['uname']; ?> </h4>
+        <h4 class="header-main-content"> @<?php echo $_SESSION['uname']; ?> </h4>
         <div class="wrapper-main">
             <div class="profile-container-top">
                 <div class="image-container">
