@@ -70,23 +70,26 @@ if (isset($_GET['code'])) {
 
         $currtime = date('Y-m-d H:i:s');
 
-        $query_check = 'SELECT * FROM user_data WHERE name = ?';
-        $stmt_check = mysqli_prepare($conn, $query_check);
-        mysqli_stmt_bind_param($stmt_check, 's', $g_name);
+        $query_check = "SELECT * FROM user_data WHERE username = '$g_email'";
+        $commit_check = mysqli_query($conn, $query_check);
+        // mysqli_stmt_bind_param($stmt_check, 's', $g_name);
         // mysqli_stmt_execute($stmt_check);
 
         $d = mysqli_fetch_object(mysqli_stmt_get_result($stmt_check));
 
         if ($d) {
-            $query_update = 'UPDATE user_data SET name = ?, email = ? WHERE name = ?';
-            $stmt_update = mysqli_prepare($conn, $query_update);
-            mysqli_stmt_bind_param($stmt_update, 'sss', $g_name, $g_email, $g_name);
-            mysqli_stmt_execute($stmt_update);
+            $update_q = "UPDATE `user_data` SET `username`='$g_email',`name`='$g_name',`email`='$g_email' WHERE username = '$g_email'";
+            $commit = mysqli_query($conn,$update_q);
+            // $query_update = 'UPDATE user_data SET name = ?, email = ? WHERE name = ?';
+            // $stmt_update = mysqli_prepare($conn, $query_update);
+            // mysqli_stmt_bind_param($stmt_update, 'sss', $g_name, $g_email, $g_name);
+            // mysqli_stmt_execute($stmt_update);
         } else {
-            $query_insert = 'INSERT INTO user_data (name, email) VALUES (?, ?)';
-            $stmt_insert = mysqli_prepare($conn, $query_insert);
-            mysqli_stmt_bind_param($stmt_insert, 'ss', $g_name, $g_email);
-            mysqli_stmt_execute($stmt_insert);
+            $query_insert = "INSERT INTO `user_data`( `username`,`name`, `email`) VALUES ('$g_email','$g_name','$g_email')";
+            $commit = mysqli_query($conn,$query_insert);
+            // $stmt_insert = mysqli_prepare($conn, $query_insert);
+            // mysqli_stmt_bind_param($stmt_insert, 'ss', $g_name, $g_email);
+            // mysqli_stmt_execute($stmt_insert);
         }
 
         $_SESSION['logged_in'] = true;

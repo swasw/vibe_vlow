@@ -4,9 +4,9 @@ require_once('dbcon.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $check_query = "SELECT * FROM `user_data` WHERE username ='$username' AND password ='$password'";
+    $check_query = "SELECT * FROM `user_data` WHERE `username` ='$username' AND `password` ='$password'";
     $checked = $connection->query($check_query);
-    if ($username === 'admin_account' && $password === 'admin123') {
+    if ($username === 'admin' && $password === 'admin123') {
         $_SESSION['uname'] = $username;
         header('Location: admin-page.php');
         exit();

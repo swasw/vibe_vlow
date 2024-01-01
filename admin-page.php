@@ -1,4 +1,9 @@
 <?php
+session_start();
+require_once 'dbcon.php';
+
+$users_query = "SELECT * FROM `user_data` ORDER BY id ASC";
+$fetch_q = mysqli_query($connection,$users_query);
 
 ?>
 
@@ -60,17 +65,25 @@
                     <th>Profile Picture</th>
                     <th>Option</th>
                 </tr>
+                <?php
+                while($row = mysqli_fetch_assoc($fetch_q)):
+                    $imagepp = base64_encode($row['profile_pic']);
+
+                ?>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?=$row['username']?></td>
+                    <td><?=$row['password']?></td>
+                    <td><?=$row['name']?></td>
+                    <td><?=$row['email']?></td>
+                    <td><img src="data:image/jpg;base64,<?= $imagepp; ?>"></td>
                     <td>
-                        <button class="edit-button"><a href="admin-edit_account.php" class="edit-button-a">Edit</a></button>
+                        <button class="edit-button"><a href="admin-edit_account.php?person=<?=$row['username']?>" class="edit-button-a">Edit</a></button>
                         <button class="delete-button">Delete</button>
                     </td>
                 </tr>
+                <?php
+                endwhile;
+                ?>
             </table>
         </div>
     </div>

@@ -1,4 +1,10 @@
 <?php
+session_start();
+require_once 'dbcon.php';
+
+$post_q = "SELECT * FROM post ORDER BY id DESC";
+$fetch_q = mysqli_query($connection,$post_q);
+
 
 ?>
 
@@ -58,15 +64,22 @@
                     <th>Caption</th>
                     <th>Option</th>
                 </tr>
+                <?php
+                while($row = mysqli_fetch_assoc($fetch_q)):
+                    $content = base64_encode($row['post']);
+                ?>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?=$row['username']?></td>
+                    <td><img src="data:image/jpg;base64,<?= $content;?>"></td>
+                    <td><?=$row['caption']?></td>
                     <td>
-                        <button class="edit-button"><a href="admin-edit_post.php" class="edit-button-a">Edit</a></button>
+                        <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['username']?>" class="edit-button-a">Edit</a></button>
                         <button class="delete-button">Delete</button>
                     </td>
                 </tr>
+                <?php
+                endwhile;
+                ?>
             </table>
         </div>
     </div>
