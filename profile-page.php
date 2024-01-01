@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+
+$connection = mysqli_connect("localhost","root","","vibevlow");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +23,7 @@
                 <img src="assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text">wonyoung_cantik</h6>
+                    <h6 class="main-text"><?php echo $_SESSION['uname']; ?></h6>
                     <h6 class="second-text">Jang Wonyoung</h6>
                 </div>
             </div>
@@ -113,7 +122,7 @@
     <div class="spacing"></div>
 
     <div class="main-content">
-        <h4 class="header-main-content">@wonyoung_cantik</h4>
+        <h4 class="header-main-content"> <?php echo $_SESSION['uname']; ?> </h4>
         <div class="wrapper-main">
             <div class="profile-container-top">
                 <div class="image-container">
