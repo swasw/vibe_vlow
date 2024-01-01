@@ -1,47 +1,48 @@
 <?php
+session_start();
+date_default_timezone_set('Asia/Jakarta');
 
-    session_start();
-    date_default_timezone_set('Asia/Jakarta');
+require_once 'vendor/autoload.php';
 
-    // if(isset($_SESSION['logged_in'])){
-    //     header('location: homepage.php');
-    // }
+$conn = mysqli_connect('localhost', 'root', '', 'vibevlow') or die ('Gagal terhubung ke database');
 
-    $conn = mysqli_connect('localhost', 'root', '', 'vibevlow') or die ('Gagal terhubung ke database');
+$client_id      = '793468008907-op67ncjrljtesl781klirsugqe9c6i2q.apps.googleusercontent.com';
+$client_secret  = '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';
+$redirect_uri   = 'http://localhost/vibevlow/vibe_vlow/login-page.php';
 
-    require_once 'vendor/autoload.php';
+$client = new Google_Client();
 
-    $client_id      = '793468008907-op67ncjrljtesl781klirsugqe9c6i2q.apps.googleusercontent.com';
-    $client_secret  = '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';
-    $redirect_uri   = 'http://localhost/vibevlow/vibe_vlow/login-page.php';
+$client->setClientId($client_id);
+$client->setClientSecret($client_secret);
+$client->setRedirectUri($redirect_uri);
 
-    $client = new Google_Client();
+$client->addScope('email');
+$client->addScope('profile');
 
-    $client->setClientId($client_id);
-    $client->setClientSecret($client_secret);
-    $client->setRedirectUri($redirect_uri);
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    $client->addScope('email');
-    $client->addScope('profile');
+    $query = "SELECT * FROM user_data WHERE email = ? LIMIT 1";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
 
-    if (isset($_POST['login'])) {
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-  
-      $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
-      $result = mysqli_query($conn, $query);
+    $result = mysqli_stmt_get_result($stmt);
 
-      if ($result && $row = mysqli_fetch_assoc($result)) {
+    if ($result && $row = mysqli_fetch_assoc($result)) {
         $hashed_password_from_database = $row['password'];
 
         if (password_verify($password, $hashed_password_from_database)) {
             $_SESSION['logged_in'] = true;
-            $_SESSION['uname'] = $row['fullname'];
+            $_SESSION['uname'] = $row['name'];
 
-          $query_check_biodata = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
-          $result_check_biodata = mysqli_query($conn, $query_check_biodata);
-  
-            if ($result_check_biodata && mysqli_fetch_assoc($result_check_biodata)) {
+            $query_check_biodata = "SELECT * FROM user_data WHERE email = ?";
+            $stmt_check_biodata = mysqli_prepare($conn, $query_check_biodata);
+            mysqli_stmt_bind_param($stmt_check_biodata, 's', $email);
+            mysqli_stmt_execute($stmt_check_biodata);
+
+            if ($stmt_check_biodata && mysqli_fetch_assoc(mysqli_stmt_get_result($stmt_check_biodata))) {
                 header('Location: homepage.php');
             } else {
                 header('location: /.php');
@@ -53,61 +54,49 @@
     } else {
         echo "Invalid email";
     }
-  }
+}
 
-  if(isset($_GET['code'])){
+if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
-    // echo "<pre>";
-    // print_r($token);
-    // echo "</pre>";
-
-    if(!isset($token['error'])){
-
+    if (!isset($token['error'])) {
         $client->setAccessToken($token['access_token']);
 
         $service = new Google_Service_Oauth2($client);
         $profile = $service->userinfo->get();
 
-        // echo "<pre>";
-        // print_r($profile);
-        // echo "</pre>";
-
         $g_name     = $profile['name'];
         $g_email    = $profile['email'];
-        $g_id       = $profile['id'];
 
         $currtime = date('Y-m-d H:i:s');
 
-        $query_check = 'select * from users where oauth_id = "'.$g_id.'" ';
-        $run_query_check = mysqli_query($conn, $query_check);
-        $d = mysqli_fetch_object($run_query_check);
+        $query_check = 'SELECT * FROM user_data WHERE name = ?';
+        $stmt_check = mysqli_prepare($conn, $query_check);
+        mysqli_stmt_bind_param($stmt_check, 's', $g_name);
+        mysqli_stmt_execute($stmt_check);
 
-        if($d){
+        $d = mysqli_fetch_object(mysqli_stmt_get_result($stmt_check));
 
-            $query_update = 'update users set fullname = "'.$g_name.'", email = "'.$g_email.'", last_login = "'.$currtime.'" where oauth_id = "'.$g_id.'"';
-            $run_query_update = mysqli_query($conn, $query_update);
-
-        }else{
-
-            $query_insert = 'insert into users (fullname, email, oauth_id, last_login)
-            value ("'.$g_name.'", "'.$g_email.'", "'.$g_id.'", "'.$currtime.'")';
-            $run_query_insert = mysqli_query($conn, $query_insert);
+        if ($d) {
+            $query_update = 'UPDATE user_data SET name = ?, email = ? WHERE name = ?';
+            $stmt_update = mysqli_prepare($conn, $query_update);
+            mysqli_stmt_bind_param($stmt_update, 'sss', $g_name, $g_email, $g_name);
+            mysqli_stmt_execute($stmt_update);
+        } else {
+            $query_insert = 'INSERT INTO user_data (name, email) VALUES (?, ?)';
+            $stmt_insert = mysqli_prepare($conn, $query_insert);
+            mysqli_stmt_bind_param($stmt_insert, 'ss', $g_name, $g_email);
+            mysqli_stmt_execute($stmt_insert);
         }
-
 
         $_SESSION['logged_in'] = true;
         $_SESSION['access_token'] = $token['access_token'];
         $_SESSION['uname'] = $g_name;
 
         header('location: homepage.php');
-
-    }else{
-
+    } else {
         echo "Login Gagal";
-
     }
-
 }
 ?>
 
