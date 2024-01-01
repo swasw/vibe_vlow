@@ -178,7 +178,7 @@
     ?>
         <div class="post-content">
             <div class="profile-tile-content">
-                <a href="person-profile.php?person=<?=$now_user;?>" class="a-profile-tile">
+                <a href="person-profile.php?person=<?=$row['username']?>" class="a-profile-tile">
                     <div class="image-profile-person-wrapper">
                         <img src="data:image/jpg;base64,<?= base64_encode($datas["profile_pic"]); ?>" alt="" class="profile-tile-image">
                     </div>
