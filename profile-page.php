@@ -177,11 +177,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h4 class="delete-text">Delete</h4>
                             </button>
                             <h4 class="space-text">|</h4>
-                            <button type="submit" class="edit-button">
-                                <a href="post-edit.php">
-                                    <h4 class="edit-text">Edit</h4>
-                                </a>
-                            </button>
+                            <a href="post-edit.php">
+                                <h4 class="edit-text">Edit</h4>
+                            </a>
                         </div>
                     </form>
                     <div class="image-content">
