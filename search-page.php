@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+$connection = mysqli_connect("localhost","root","","vibevlow");
+
+$current_user = $_SESSION['uname'];
+$get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
+$user_data = mysqli_query($connection, $get_user);
+$users = mysqli_fetch_assoc($user_data);
+$getsql = "SELECT * FROM `user_data` WHERE username = '$current_user' ORDER BY id DESC";
+$data = mysqli_query($connection, $getsql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +29,7 @@
         <div class="navbar-tile">
             <a href="profile-page.php">
                 <div class="tile-unactive">
-                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>

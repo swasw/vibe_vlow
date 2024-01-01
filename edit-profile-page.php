@@ -1,3 +1,37 @@
+<?php
+
+session_start();
+
+$connection = mysqli_connect("localhost","root","","vibevlow");
+
+$current_user = $_SESSION['uname'];
+$get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
+$user_data = mysqli_query($connection, $get_user);
+$users = mysqli_fetch_assoc($user_data);
+$getsql = "SELECT * FROM `post` WHERE username = '$current_user' ORDER BY id DESC";
+$data = mysqli_query($connection, $getsql);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil data yang diubah dari formulir
+    $newUsername = $_POST['new_username'];
+    $newPassword = $_POST['new_password'];
+
+    // Perbarui data pengguna di database
+    $updateQuery = "UPDATE `user_data` SET username = '$newUsername', password = '$newPassword' WHERE username = '$current_user'";
+    $updateResult = mysqli_query($connection, $updateQuery);
+
+    if ($updateResult) {
+        // Jika berhasil diperbarui, dapatkan data terbaru
+        $getUserQuery = "SELECT * FROM `user_data` WHERE username = '$newUsername'";
+        $updatedUserData = mysqli_query($connection, $getUserQuery);
+        $users = mysqli_fetch_assoc($updatedUserData);
+    } else {
+        // Handle kesalahan jika perbaruan gagal
+        echo "Gagal memperbarui data.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +49,7 @@
         <div class="navbar-tile">
             <a href="profile-page.php">
                 <div class="tile-unactive">
-                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
+                <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
@@ -61,36 +95,36 @@
                 <h4 class="title-text-setting">Edit Profile</h4>
             </div>
 
-            <div class="field-wrapper">
-                <div class="field">
-                    <div class="image-profile-container">
-                        <label for="photo-change" class="label-photo">
-                            <h4 class="change-photo-text">Change Photo</h4>
-                            <img src="assets/images/wony.jpg" alt="" class="image-profile-pic">
-                        </label>
+            <form method="post">
+                <div class="field-wrapper">
+                    <div class="field">
+                        <div class="image-profile-container">
+                            <label for="photo-change" class="label-photo">
+                                <h4 class="change-photo-text">Change Photo</h4>
+                                <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="image-profile-pic">
+                            </label>
+                        </div>
+                    </div>
+                    <input type="file" id="photo-change" class="file-image-input">
+                </div>
+                <div class="field-wrapper">
+                    <div class="field">
+                        <h4 class="title-field">Username</h4>
+                        <input type="text" class="field-input" name="new_username" value="<?php echo $users['username']; ?>">
                     </div>
                 </div>
-                
-
-                <input type="file" id="photo-change" class="file-image-input">
-            </div>
-            <div class="field-wrapper">
-                <div class="field">
-                    <h4 class="title-field">Username</h4>
-                    <input type="text" class="field-input">
+                <div class="field-wrapper">
+                    <div class="field">
+                        <h4 class="title-field">Password</h4>
+                        <input type="text" class="field-input" name="new_password" value="<?php echo $users['password']; ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="field-wrapper">
-                <div class="field">
-                    <h4 class="title-field">Password</h4>
-                    <input type="text" class="field-input">
+                <div class="field-wrapper">
+                    <div class="field-button">
+                        <button type="submit" class="save-change">Save Change</button>
+                    </div>
                 </div>
-            </div>
-            <div class="field-wrapper">
-                <div class="field-button">
-                    <button type="submit" class="save-change">Save Change</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
