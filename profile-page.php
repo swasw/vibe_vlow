@@ -147,6 +147,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2>Settings</h2>
                 </div>
             </a>
+            <a href="friend-request.php">
+                <div class="tile-unactive">
+                    <img src="assets/images/friend.png" alt="" class="icon">
+                    <h2>Request</h2>
+                </div>
+            </a>
         </div>
 
         <div class="logout-button-wrapper">

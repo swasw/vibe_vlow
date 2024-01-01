@@ -1,0 +1,386 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Medium-Font;
+}
+
+@font-face {
+    font-family: Bold-Font;
+    src: url(../assets/fonts/Inter-Bold.ttf);
+}
+@font-face {
+    font-family: Medium-Font;
+    src: url(../assets/fonts/Inter-Medium.ttf);
+}
+@font-face {
+    font-family: Regular-Font;
+    src: url(../assets/fonts/Inter-Regular.ttf);
+}
+@font-face {
+    font-family: Thin-Font;
+    src: url(../assets/fonts/Inter-Thin.ttf);
+}
+
+body {
+    background-color: #222222;
+    
+    display: flex;
+    flex-direction: row;
+}
+
+h2 {
+    font-size: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+
+    background-color: #111111;
+    height: 94vh;
+    width: 15%;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.spacing {
+    display: flex;
+    flex-direction: column;
+
+    height: 94vh;
+    width: 18%;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.navbar-logo {
+    padding-left: 20%;
+}
+
+.logo-image {
+    height: 40px;
+}
+
+.profile-wrapper-a {
+    padding: 5% 20%;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-wrapper {
+    width: auto;
+    margin-top: 15%;
+    border-radius: 25px 0px 0px 25px;
+
+}
+.profile-wrapper:hover {
+    background-color: #161616;
+}
+
+.profile-text {
+    margin-left: 10px;
+}
+
+.profile-image {
+    height: 15px;
+    border-radius: 100%;
+}
+
+.navbar-tile {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.icon {
+    height: 15px;
+    margin-right: 10px;
+}
+
+
+.tile-active {
+    background-color: #222222;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5% 20%;
+    border-radius: 25px 0px 0px 25px;
+}
+
+.tile-unactive {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5% 20%;
+    border-radius: 25px 0px 0px 25px;
+}
+
+.tile-unactive:hover {
+    background-color: #161616;
+}
+
+.logout-button-wrapper {
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.button-a {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-a-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: end;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.logout-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: end;
+    width: 100%;
+    height: 100%;
+}
+
+.logout-button {
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 8px 0px;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-family: Bold-Font;
+    background-color: #AC3F3F;
+    color: white;
+}
+
+.add-post-button {
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 15px 0px;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-family: Bold-Font;
+    background-image: linear-gradient(to right, #DD57F3, #FC354A);
+    color: white;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+.add-post-button:hover {
+    cursor: pointer;
+}
+
+.main-content {
+    height: fit-content;
+    width: 100%;
+    padding: 3%;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: fit-content;
+
+    padding: 0% 0% 4% 0%;
+}
+
+.profile-tile-image {
+    height: 30px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.profile-tile-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 2%;
+}
+
+h3 {
+    color: white;
+    font-size: 13px;
+    font-family: Regular-Font;
+}
+
+.image-content {
+    padding: 2%;
+}
+
+.profile-content-image {
+    height: 500px;
+}
+
+.caption-content {
+    padding: 0% 2%;
+}
+
+h4 {
+    font-family: Regular-Font;
+    color: white;
+    font-size: 15px;
+}
+
+.time-content {
+    padding: 1% 2%;
+}
+
+h5 {
+    font-family: Thin-Font;
+    color: white;
+    font-size: 8px;
+}
+
+.line-end {
+    padding: 3% 2%;
+    width: 100%;
+    height: fit-content;
+}
+
+.line-2 {
+    width: 100%;
+    height: 1px;
+    background-color: #444444;
+}
+
+.title-text-setting {
+    font-size: 30px;
+    font-family: Bold-Font;
+}
+
+.setting-tile-wrapper {
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    margin-top: 20px;
+}
+
+.setting-title {
+    margin-bottom: 30px;
+}
+
+.setting-tile-text {
+    color: #555;
+    font-size: 15px;
+}
+
+.setting-icon {
+    color: #555;
+    font-size: 15px;
+}
+
+.a-setting-tile {
+    width: fit-content;
+}
+
+
+.friend-tile-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile-friend-wrapper {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 100%;
+
+}
+
+.friend-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-friend-wrapper {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.name-title {
+    font-size: 20px;
+}
+
+.name-bio {
+    color: #555;
+    margin-top: 8px;
+    font-size: 13px;
+    font-family: Regular-Font;
+}
+
+.all-button-wrapper {
+    justify-content: end;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+}
+
+.friend-all-wrapper {
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid #555;
+    margin-top: 30px;
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.decline-button {
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    background-color: #AC3F3F;
+    padding: 7px 10px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.accept-button {
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    background-color: #4c48b6;
+    padding: 7px 10px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}

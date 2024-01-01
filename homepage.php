@@ -116,9 +116,10 @@
                     <h2>Settings</h2>
                 </div>
             </a>
-            <a href="person-acc.php">
+            <a href="friend-request.php">
                 <div class="tile-unactive">
-                    <h2>cobaah</h2>
+                    <img src="assets/images/friend.png" alt="" class="icon">
+                    <h2>Request</h2>
                 </div>
             </a>
         </div>

@@ -73,7 +73,7 @@ if (isset($_GET['code'])) {
         $query_check = 'SELECT * FROM user_data WHERE name = ?';
         $stmt_check = mysqli_prepare($conn, $query_check);
         mysqli_stmt_bind_param($stmt_check, 's', $g_name);
-        mysqli_stmt_execute($stmt_check);
+        // mysqli_stmt_execute($stmt_check);
 
         $d = mysqli_fetch_object(mysqli_stmt_get_result($stmt_check));
 
