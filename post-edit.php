@@ -23,17 +23,25 @@ else {
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $caption = $_POST['caption'];
 
-    $updateQuery = "UPDATE `post` SET `caption` = '$caption' WHERE username = '$current_username'";
+    $updateQuery = "UPDATE `post` SET `caption` = '$caption' WHERE id = '$id'";
     $updateResult = mysqli_query($connection, $updateQuery);
+
+    $fetchq = "SELECT * FROM post WHERE id = '$id'";
+    $fetch=mysqli_query($connection, $fetchq);
+    $datav= mysqli_fetch_assoc($fetch);
     if (isset($_FILES['new_photo'])) {
         $image = $_FILES['new_photo']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
-
-        if ($imgContent) {
-            $updatePhotoQuery = "UPDATE `post` SET post = '$imgContent' WHERE username = '$current_username'";
+        if($image==null){
+            $image = base64_encode($datav["post"]);
+            // $updatePhotoQuery = "UPDATE `post` SET post = '$image' WHERE id = '$id'";
+            // $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
+        }
+        else if ($imgContent = addslashes(file_get_contents($image))) {
+            $updatePhotoQuery = "UPDATE `post` SET post = '$imgContent' WHERE id = '$id'";
             $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
         }
     }
+    header("Location: profile-page.php");
 }
 ?>
 

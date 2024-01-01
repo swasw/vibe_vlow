@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </button>
                             <h4 class="space-text">|</h4>
                             <a href="post-edit.php?convert=<?=$row['id'];?>">
-                                <button class="edit-button">Edit</button>
+                                <h4 class="edit-text">edit</h4>
                             </a>
                             
                         </div>
