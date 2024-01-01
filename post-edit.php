@@ -1,62 +1,40 @@
 <?php
 session_start();
 
-// Koneksi ke database
 $connection = mysqli_connect("localhost", "root", "", "vibevlow");
+$id = $_GET['convert']; 
+if (isset($id)) {
+    $eid = $id;
+    $query = "SELECT * FROM post WHERE id = '$eid'";
+    $content = mysqli_query($connection, $query);
+    $row = mysqli_fetch_assoc($content);
+    $current_username = $row['username'];
 
-// Periksa apakah ada post_id yang dikirimkan
-if(isset($_GET['post_id'])) {
-    $post_id = $_GET['post_id'];
-    
-    // Ambil data post dari database berdasarkan post_id dan username
-    $getsql = "SELECT * FROM `post` WHERE username = '$current_user' AND id = '$post_id'";
-    $data = mysqli_query($connection, $getsql);
-    $row = mysqli_fetch_assoc($data);
+    $users_q = "SELECT * FROM user_data WHERE username = '$current_username'";
+    $fetch_user = mysqli_query($connection, $users_q);
+    $user_data = mysqli_fetch_assoc($fetch_user);
+    if (!$row) {
+        die('Invalid Data');
+    }
+    }
+else {
+    die("Data yang dimaksud tidak ada");
 }
-
-// Tangani jika ada form yang disubmit
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $caption = $_POST['caption'];
 
-    // Periksa apakah ada file yang diunggah
-    if(isset($_FILES['image']['tmp_name']) && !empty($_FILES['image']['tmp_name'])) {
-        // Jika ada file yang diunggah
-        $imageTmp = $_FILES['image']['tmp_name'];
-        $imageData = file_get_contents($imageTmp);
-        $escapedImageData = mysqli_real_escape_string($connection, $imageData);
+    $updateQuery = "UPDATE `post` SET `caption` = '$caption' WHERE username = '$current_username'";
+    $updateResult = mysqli_query($connection, $updateQuery);
+    if (isset($_FILES['new_photo'])) {
+        $image = $_FILES['new_photo']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));
 
-        // Update query untuk memperbarui post dengan foto baru
-        $updateQuery = "UPDATE `post` SET post = '$escapedImageData', caption = '$caption' WHERE username = '$current_user' AND id = '$post_id'";
-        $updateResult = mysqli_query($connection, $updateQuery);
-
-        if (!$updateResult) {
-            echo "Gagal memperbarui post.";
-        }
-    } else {
-        // Jika tidak ada file yang diunggah, update hanya untuk caption
-        $updateQuery = "UPDATE `post` SET caption = '$caption' WHERE username = '$current_user' AND id = '$post_id'";
-        $updateResult = mysqli_query($connection, $updateQuery);
-
-        if (!$updateResult) {
-            echo "Gagal memperbarui caption.";
+        if ($imgContent) {
+            $updatePhotoQuery = "UPDATE `post` SET post = '$imgContent' WHERE username = '$current_username'";
+            $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
         }
     }
-
-    // Redirect ke halaman edit post
-    header('Location: post-edit.php?post_id=' . $post_id);
-    exit();
 }
-
-// Ambil informasi pengguna
-$current_user = $_SESSION['uname'];
-$get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
-$user_data = mysqli_query($connection, $get_user);
-$users = mysqli_fetch_assoc($user_data);
-
-// Ambil data post yang akan diedit
-$getsql = "SELECT * FROM `post` WHERE username = '$current_user' ORDER BY id DESC";
-$data = mysqli_query($connection, $getsql);
-$row = mysqli_fetch_assoc($data);
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +54,7 @@ $row = mysqli_fetch_assoc($data);
         <div class="navbar-tile">
             <a href="profile-page.php">
                 <div class="tile-unactive">
-                    <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($user_data["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
@@ -127,7 +105,7 @@ $row = mysqli_fetch_assoc($data);
                             <h4 class="change-image-text">Change Image</h4>
                         </div>
                     </label>
-                    <input id="file-upload" type="file" class="input-file" name="image">
+                    <input id="file-upload" type="file" class="input-file" name="new_photo">
                 </div>
     
                 <div class="caption-wrapper">
