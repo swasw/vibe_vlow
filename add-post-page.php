@@ -12,7 +12,7 @@ $data = mysqli_query($connection, $getsql);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imageTmp = $_FILES['image']['tmp_name'];
-    $caption = $_POST['caption'];
+    $caption = mysqli_real_escape_string($connection, $_POST['caption']);
 
     $imageData = file_get_contents($imageTmp);
 
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="navbar-tile">
             <a href="profile-page.php">
                 <div class="tile-unactive">
-                    <img src="assets/images/wony.jpg" alt="" class="profile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($users["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
             </a>
