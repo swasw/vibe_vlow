@@ -41,45 +41,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             flex-direction: column;
             padding: 20px;
             background-color: transparent;
-            border: solid;
-            border-color: rgb(77, 85, 143);
             border-radius: 20px;
             backdrop-filter: blur(10px);
         }
         .top-text{
+            margin-bottom: 10px;
             text-align: center;
             font-family: sans-serif;
             font-size: 35px;
-            color: magenta;
-            font-weight: bold;
+            color: white;
+            font-weight:bolder;
         }
         button{
-                margin-top: 10px;
-                width: 100%;
+                margin-top: 30px;
+                width: 30%;
                 border-radius: 5px;
-                padding: 10px;
-                outline: 2px solid rgb(15, 15, 98);
+                padding: 10px 0px;
+                outline: none;
                 border: none;
-                font-size: 15px;
-                background-color: rgb(169, 169, 255);
+                font-size: 13px;
+                background-image: linear-gradient(to right, #DD57F3, #FC354A);
                 transition: background-color 0.6s;
                 font-family: sans-serif;
                 font-weight: bold;
+                color: white;
             }
             button:hover{
-                background-color: aqua;
                 cursor: pointer;
             }
+        .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
     </style>
 </head>
 <body>
-
     <div class="container">
-    <form id="login_form" class="form" action="login-page.php" method="post"><p>
-        <p class="top-text">Failed To Login</p>
+    <form id="login_form" class="form" action="login-page.php" method="post">
+        <p class="top-text">Failed to Login</p>
         <button class="submit_class">Back to Login</button>
-    </p></form>
+    </form>
 </div>
         
 </body>

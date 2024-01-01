@@ -21,7 +21,7 @@ $data = mysqli_query($connection, $getsql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Vibe Flow</title>
+    <title><?=$datas['username']?> Profile | Vibe Flow</title>
     <link rel="stylesheet" href="style/profile-page-style.css">
 </head>
 <body>
@@ -89,7 +89,7 @@ $data = mysqli_query($connection, $getsql);
 
         <div class="navbar-tile">
             <a href="#">
-                <div class="tile-active">
+                <div class="tile-unactive">
                     <img src="data:image/jpg;base64,<?= base64_encode($user_datas["profile_pic"]); ?>" alt="" class="profile-image">
                     <h2 class="profile-text">Profile</h2>
                 </div>
@@ -138,6 +138,11 @@ $data = mysqli_query($connection, $getsql);
                     <img src="data:image/jpg;base64,<?= base64_encode($datas["profile_pic"]); ?>" alt="" class="content-profile-img">
                 </div>
                 <h4 class="profile-name"><?=$datas['name']?></h4>
+            </div>
+            <div class="button-profile-edit">
+                <a href="edit-profile-page.php" class="profile-edit-a">
+                    <button class="button-profile">+ Add Friend</button>
+                </a>
             </div>
 
             <div class="line-between"></div>
