@@ -15,8 +15,18 @@
     //     exit;
     // }
     $current_user=$_SESSION['uname'];
+    // posts fetch
     $getsql = "SELECT * FROM `post` ORDER BY id DESC";
     $data = mysqli_query($connection, $getsql);
+    // friends fetch
+    $getsql = "SELECT * 
+    FROM `friend_request` 
+    WHERE (`sender` = '$current_user' OR `receiver` = '$current_user') 
+          AND `value` = 'true' 
+    ORDER BY id DESC
+    ";
+    $friends_data = mysqli_query($connection, $getsql);
+    // userdata fetch
     $get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
     $user_data = mysqli_query($connection, $get_user);
     $users = mysqli_fetch_assoc($user_data);
@@ -45,20 +55,35 @@
     
             <div class="friend-list-wrapper">
                 <h6 class="friend-text">Friend</h6>
+                <?php
+                    while($friends = mysqli_fetch_assoc($friends_data)):
+                        if($current_user==$friends['sender']){
+                            $friend_id = $friends['receiver'];
+                        }
+                        else{
+                            $friend_id = $friends['sender'];
+                        }
+                        $fquer = "SELECT * FROM `user_data` WHERE username = '$friend_id'";
+                        $friend_fetch = mysqli_query($connection, $fquer);
+                        $frienddatas = mysqli_fetch_assoc($friend_fetch);
+                    ?>
                 <div class="friend-list">
                     <div class="tile-friend-list">
                         <div class="first-column">
                             <div class="image-crop">
-                                <img src="assets/images/yujin.jpeg" alt="" class="tile-profile-img">
+                                <img src="data:image/jpg;base64,<?= base64_encode($frienddatas["profile_pic"]); ?>" alt="" class="tile-profile-img">
                             </div>
-                            <h6 class="friend-name">ahn_yujin</h6>
+                            <h6 class="friend-name"><?=$frienddatas['username']?></h6>
                         </div>
                         <a href="" class="a-friend-list">
                             <h6 class="see-profile">see profile</h6>
                         </a>
                     </div>
                 </div>
-                <div class="friend-list">
+                <?php
+                    endwhile;
+                    ?>
+                <!-- <div class="friend-list">
                     <div class="tile-friend-list">
                         <div class="first-column">
                             <div class="image-crop">
@@ -83,7 +108,7 @@
                             <h6 class="see-profile">see profile</h6>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>    
 </div>

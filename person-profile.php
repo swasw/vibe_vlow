@@ -146,23 +146,23 @@ $data = mysqli_query($connection, $getsql);
             <?php
                 while($row = mysqli_fetch_assoc($data)) :
                     // $imageData = $row['post'];
-                    $now_user = $row['username'];
-                    // $base64Image = base64_encode($imageData);
-                    $queries = "SELECT * FROM `post` WHERE username = '$now_user'";
-                    $fetch = mysqli_query($connection, $queries);
-                    $post_datas = mysqli_fetch_assoc($fetch);
+                    // $now_user = $row['username'];
+                    // // $base64Image = base64_encode($imageData);
+                    // $queries = "SELECT * FROM `post` WHERE username = '$now_user'";
+                    // $fetch = mysqli_query($connection, $queries);
+                    // $post_datas = mysqli_fetch_assoc($fetch);
             ?>
                 <div class="post-content">
                     <div class="image-content">
-                        <img src="data:image/jpg;base64,<?= base64_encode($post_datas["post"]);?>" alt="" class="profile-content-image">
+                        <img src="data:image/jpg;base64,<?= base64_encode($row["post"]);?>" alt="" class="profile-content-image">
                     </div>
         
                     <div class="caption-content">
-                        <h4><?=$post_datas['caption']?></h4>
+                        <h4><?=$row['caption']?></h4>
                     </div>
                 
                     <div class="time-content">
-                        <h5><?=$post_datas['time_stamp']?></h5>
+                        <h5><?=$row['time_stamp']?></h5>
                     </div>
                 </div>
                 <?php

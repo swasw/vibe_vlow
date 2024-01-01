@@ -10,6 +10,7 @@ $user_data = mysqli_query($connection, $get_user);
 $users = mysqli_fetch_assoc($user_data);
 $getsql = "SELECT * FROM `user_data` WHERE username = '$current_user' ORDER BY id DESC";
 $data = mysqli_query($connection, $getsql);
+
 ?>
 
 <!DOCTYPE html>
@@ -75,35 +76,49 @@ $data = mysqli_query($connection, $getsql);
                 <h4 class="title-search-text">Search</h4>
             </div>
         </div>
-
+        <form action="" method="get">
         <div class="searchbar-wrapper">
             <div class="searchbar">
-                <input type="text" class="text-searchbar" placeholder="Search user...">
+                <input type="text" class="text-searchbar" placeholder="Search user..." name="searchquer">
             </div>
-            <a href="" class="a-searchbar">
+            <button class="a-searchbar" type="submit">
                 <div class="searchbar-icon">
                     <img src="assets/images/search.png" alt="" class="search-icon">
                 </div>
-            </a>
+            </button>
         </div>
+        </form>
 
         <div class="search-result-wrapper">
             <h4 class="search-result-text">Search Result</h4>
         </div>
-
+        <?php
+        $searchquer = "";
+        $search_query= "SELECT * FROM `user_data` WHERE `username` LIKE '$searchquer%'";
+        $fetching = mysqli_query($connection,$search_query);
+        if(isset($_GET['searchquer'])){
+            $searchquer = $_GET['searchquer'];
+            $search_query= "SELECT * FROM `user_data` WHERE `username` LIKE '$searchquer%'";
+            $fetching = mysqli_query($connection,$search_query);
+        };
+        while($result = mysqli_fetch_assoc($fetching)):
+            
+        ?>
         <div class="search-result-tile">
-            <a href="" class="a-search">
+            <a href="person-profile.php?person=<?=$result['username'];?>" class="a-search">
                 <div class="tile-image-wrapper">
-                    <img src="assets/images/wony.jpg" alt="" class="tile-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($result["profile_pic"]); ?>" alt="" class="tile-image">
                 </div>
             </a>
-
-            <a href="" class="a-search">
+            <a href="person-profile.php?person=<?=$result['username'];?>" class="a-search">
                 <div class="result-text-wrapper">
-                    <h4 class="result-text">wonyoung_cantik</h4>
+                    <h4 class="result-text"><?=$result['username']?></h4>
                 </div>
             </a>
         </div>
+        <?php
+        endwhile;
+        ?>
     </div>
     
 </body>
