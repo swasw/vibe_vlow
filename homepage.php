@@ -34,7 +34,8 @@
                 <img src="assets/images/wony2.jpg" alt="" class="profile-wrapper-img">
                     
                 <div class="text-profile-wrapper">
-                    <h6 class="main-text">wonyoung_cantik</h6>
+                    <h6 class="main-text"> <?php echo $_SESSION['uname']; ?> </h6>
+                    <!-- <h6 class="main-text">wonyoung_cantik</h6> -->
                     <h6 class="second-text">Jang Wonyoung</h6>
                 </div>
             </div>
