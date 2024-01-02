@@ -8,8 +8,11 @@ $current_user = $_SESSION['uname'];
 $get_user = "SELECT * FROM `user_data` WHERE username = '$current_user'";
 $user_data = mysqli_query($connection, $get_user);
 $users = mysqli_fetch_assoc($user_data);
-$getsql = "SELECT * FROM `user_data` WHERE username = '$current_user' ORDER BY id DESC";
-$data = mysqli_query($connection, $getsql);
+$getfriend = "SELECT * 
+FROM `friend_request` 
+WHERE (`receiver` = '$current_user') 
+      AND `value` = 'false'";
+$data = mysqli_query($connection, $getfriend);
 ?>
 
 <!DOCTYPE html>
@@ -77,21 +80,38 @@ $data = mysqli_query($connection, $getsql);
 
     <div class="main-content">
         <h4 class="title-text-setting">Friend Request</h4>
+        <?php
+        $xfriend="";
+        while($friend=mysqli_fetch_assoc($data)):
+            $xfriend = $friend['sender'];
+            $friend_q = "SELECT * FROM `user_data` WHERE username = '$xfriend'" ;
+            $com = mysqli_query($connection,$friend_q);
+            $friend_data = mysqli_fetch_assoc($com);
+        ?>
+        
         <div class="friend-all-wrapper">
             <div class="friend-tile-wrapper">
                 <div class="profile-friend-wrapper">
-                    <img src="assets/images/wony.jpg" alt="" class="friend-image">
+                    <img src="data:image/jpg;base64,<?= base64_encode($friend_data["profile_pic"]); ?>" alt="" class="friend-image">
                 </div>
                 <div class="text-friend-wrapper">
-                    <h4 class="name-title">jangwonyoung</h4>
-                    <h4 class="name-bio">Jang Wonyoung</h4>
+                    <h4 class="name-title"><?=$friend_data['username']?></h4>
+                    <h4 class="name-bio"><?=$friend_data['name']?></h4>
                 </div>
             </div>
+            <form action="acc-con.php" method="post">
             <div class="all-button-wrapper">
-                <button type="submit" class="decline-button">Decline</button>
+                <input type="hidden" name="uname" value="<?=$current_user; ?>">
+                <input type="hidden" name="person" value="<?=$friend_data['username']; ?>">
+                <button type="" class="decline-button">Decline</button>
                 <button type="submit" class="accept-button">Accept</button>
             </div>
+            </form> 
         </div>
+        
+        <?php
+        endwhile;
+        ?>
     </div>
 </body>
 </html>
