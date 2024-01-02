@@ -84,14 +84,14 @@ if (isset($_GET['code'])) {
             die('Error preparing statement: ' . mysqli_error($conn));
         }
         if ($d) {
-            $update_q = "UPDATE user_data SET username='$g_email',name='$g_name',email='$g_email' WHERE username = '$g_email'";
-            $commit = mysqli_query($conn,$update_q);    
+            $update_q = "UPDATE `user_data` SET `username`='$g_email',`name`='$g_name',`email`='$g_email' WHERE username = '$g_email'";
+            $commit = mysqli_query($conn,$update_q); 
             // $query_update = 'UPDATE user_data SET name = ?, email = ? WHERE name = ?';
             // $stmt_update = mysqli_prepare($conn, $query_update);
             // mysqli_stmt_bind_param($stmt_update, 'sss', $g_name, $g_email, $g_name);
             // mysqli_stmt_execute($stmt_update);
         } else {
-            $query_insert = "INSERT INTO user_data( username,name, email) VALUES ('$g_email','$g_name','$g_email')";
+            $query_insert = "INSERT INTO `user_data`( `username`,`name`, `email`) VALUES ('$g_email','$g_name','$g_email')";
             $commit = mysqli_query($conn,$query_insert);
             // $stmt_insert = mysqli_prepare($conn, $query_insert);
             // mysqli_stmt_bind_param($stmt_insert, 'ss', $g_name, $g_email);
