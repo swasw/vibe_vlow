@@ -92,7 +92,7 @@ if (isset($_POST['delete_post'])) {
                     <td><?=$row['caption']?></td>
                     <td>
                         <div class="button-all-wrapper">
-                            <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['username']?>" class="edit-button-a">Edit</a></button>
+                            <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['id']?>" class="edit-button-a">Edit</a></button>
     
                             <form method="POST" action="admin-manage_post.php">
                                 <input type="hidden" name="delete_id" value="<?= $row['id'] ?>">

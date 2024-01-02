@@ -1,9 +1,39 @@
 <?php
 session_start();
 require_once 'dbcon.php';
+$post_id = $_GET['person'];
+$user_query = "SELECT * FROM post WHERE id = '$post_id'";
+$fetch_data = mysqli_query($connection,$user_query);
+$user_data = mysqli_fetch_assoc($fetch_data);
+$current_user = $user_data['username'];
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $caption = $_POST['caption'];
+    $update_q = "UPDATE `post` SET `caption`='$caption' WHERE id = '$post_id'";
+    $commit = mysqli_query($connection,$update_q);
+    if(isset($_FILES['new_photo'])) {
+        $image = $_FILES['new_photo']['tmp_name']; 
+        if ($image==null){
+            $_SESSION['uname'] = $current_user;
+            header('Location: admin-page.php');
+        }   
+        else if ($imgContent = addslashes(file_get_contents($image))) {
+            $updatePhotoQuery = "UPDATE `post` SET post = '$imgContent' WHERE id = '$post_id'";
+            $updatePhotoResult = mysqli_query($connection, $updatePhotoQuery);
 
-$post_q = "SELECT * FROM post ORDER BY id DESC";
-$fetch_q = mysqli_query($connection,$post_q);
+            if ($updatePhotoResult) {
+                $getUserQuery = "SELECT * FROM `post` WHERE id = '$post_id'";
+                $updatedUserData = mysqli_query($connection, $getUserQuery);
+                $users = mysqli_fetch_assoc($updatedUserData);
+                $_SESSION['uname'] = $current_user;
+                header('Location: admin-page.php');
+            } else {
+                echo "Gagal memperbarui foto profil. Error:" . mysqli_error($connection);
+            }
+        } else {
+            echo "Gagal mendapatkan konten file.";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +84,7 @@ $fetch_q = mysqli_query($connection,$post_q);
     
     <div class="main-content">
         <h4 class="account-manager-text">Edit Post</h4>
+        <form action="" method="post" enctype="multipart/form-data">
         <div class="edit-account-wrapper">
             <div class="input-edit-wrapper">
                 <h4 class="input-edit-text">Username</h4>
@@ -61,21 +92,22 @@ $fetch_q = mysqli_query($connection,$post_q);
                 $row = mysqli_fetch_assoc($fetch_q)
                 ?>
                 <div class="static-username">
-                    <h4 class="static-text">asta</h4>
+                    <h4 class="static-text"><?=$current_user?></h4>
                 </div>
             </div>
             <div class="input-edit-wrapper">
                 <h4 class="input-edit-text">Profile Photo</h4>
-                <input type="file">
+                <input type="file" name ="new_photo">
             </div>
             <div class="input-edit-wrapper">
                 <h4 class="input-edit-text">Caption</h4>
-                <input type="text" class="input-field-edit">
+                <input type="text" class="input-field-edit" value ="<?=$user_data['caption']?>" name="caption">
             </div>
             <div class="submit-wrapper">
                 <button type="submit" class="submit-button">Save Change</button>
             </div>
         </div>
+        </form>
         
     </div>
 </body>
