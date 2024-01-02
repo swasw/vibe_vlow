@@ -70,22 +70,28 @@ if (isset($_GET['code'])) {
 
         $currtime = date('Y-m-d H:i:s');
 
-        $query_check = "SELECT * FROM user_data WHERE username = '$g_email'";
-        $commit_check = mysqli_query($conn, $query_check);
-        // mysqli_stmt_bind_param($stmt_check, 's', $g_name);
-        // mysqli_stmt_execute($stmt_check);
+        $query_check = "SELECT * FROM user_data WHERE username = ?";
+        $stmt_check = mysqli_prepare($conn, $query_check);
 
-        $d = mysqli_fetch_object(mysqli_stmt_get_result($stmt_check));
+        if ($stmt_check) {
+            mysqli_stmt_bind_param($stmt_check, 's', $g_email);
+            mysqli_stmt_execute($stmt_check);
 
+            $commit_check = mysqli_stmt_get_result($stmt_check);
+
+            $d = mysqli_fetch_object($commit_check);
+        } else {
+            die('Error preparing statement: ' . mysqli_error($conn));
+        }
         if ($d) {
-            $update_q = "UPDATE `user_data` SET `username`='$g_email',`password`='$g_email',`name`='$g_name',`email`='$g_email' WHERE username = '$g_email'";
-            $commit = mysqli_query($conn,$update_q);
+            $update_q = "UPDATE `user_data` SET `username`='$g_email',`name`='$g_name',`email`='$g_email' WHERE username = '$g_email'";
+            $commit = mysqli_query($conn,$update_q);    
             // $query_update = 'UPDATE user_data SET name = ?, email = ? WHERE name = ?';
             // $stmt_update = mysqli_prepare($conn, $query_update);
             // mysqli_stmt_bind_param($stmt_update, 'sss', $g_name, $g_email, $g_name);
             // mysqli_stmt_execute($stmt_update);
         } else {
-            $query_insert = "INSERT INTO `user_data`( `username`,`password`,`name`, `email`) VALUES ('$g_email','$g_email','$g_name','$g_email')";
+            $query_insert = "INSERT INTO `user_data`( `username`,`name`, `email`) VALUES ('$g_email','$g_name','$g_email')";
             $commit = mysqli_query($conn,$query_insert);
             // $stmt_insert = mysqli_prepare($conn, $query_insert);
             // mysqli_stmt_bind_param($stmt_insert, 'ss', $g_name, $g_email);
@@ -94,7 +100,7 @@ if (isset($_GET['code'])) {
 
         $_SESSION['logged_in'] = true;
         $_SESSION['access_token'] = $token['access_token'];
-        $_SESSION['uname'] = $g_name;
+        $_SESSION['uname'] = $g_email; 
 
         header('location: homepage.php');
     } else {
