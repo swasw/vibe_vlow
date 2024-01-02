@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once 'dbcon.php';
+
+$post_q = "SELECT * FROM post ORDER BY id DESC";
+$fetch_q = mysqli_query($connection,$post_q);
 ?>
 
 <!DOCTYPE html>
@@ -54,8 +57,11 @@ require_once 'dbcon.php';
         <div class="edit-account-wrapper">
             <div class="input-edit-wrapper">
                 <h4 class="input-edit-text">Username</h4>
+                <?php
+                $row = mysqli_fetch_assoc($fetch_q)
+                ?>
                 <div class="static-username">
-                    <h4 class="static-text">Astaa</h4>
+                    <h4 class="static-text">asta</h4>
                 </div>
             </div>
             <div class="input-edit-wrapper">

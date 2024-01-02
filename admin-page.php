@@ -5,6 +5,20 @@ require_once 'dbcon.php';
 $users_query = "SELECT * FROM `user_data` ORDER BY id ASC";
 $fetch_q = mysqli_query($connection,$users_query);
 
+if (isset($_POST['delete_user'])) {
+    $delete_id = $_POST['delete_id'];
+    $delete_query = "DELETE FROM `user_data` WHERE id = ?";
+    $stmt = mysqli_prepare($connection, $delete_query);
+    mysqli_stmt_bind_param($stmt, 'i', $delete_id);
+    mysqli_stmt_execute($stmt);
+
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        header('Location: admin-page.php');
+        exit;
+    } else {
+        echo "Failed to delete user.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -75,10 +89,15 @@ $fetch_q = mysqli_query($connection,$users_query);
                     <td><?=$row['password']?></td>
                     <td><?=$row['name']?></td>
                     <td><?=$row['email']?></td>
-                    <td><img src="data:image/jpg;base64,<?= $imagepp; ?>"></td>
-                    <td>
-                        <button class="edit-button"><a href="admin-edit_account.php?person=<?=$row['username']?>" class="edit-button-a">Edit</a></button>
-                        <button class="delete-button">Delete</button>
+                    <td><img src="data:image/jpg;base64,<?= $imagepp; ?>" class="image-content-friend"></td>
+                    <td class="td-button">
+                        <div class="button-all-wrapper">
+                            <button class="edit-button"><a href="admin-edit_account.php?person=<?=$row['username']?>" class="edit-button-a">Edit</a></button>
+                            <form method="post">
+                                <input type="hidden" name="delete_id" value="<?= $row['id'] ?>">
+                                <button type="submit" class="delete-button" name="delete_user">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 <?php

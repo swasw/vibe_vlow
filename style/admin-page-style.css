@@ -468,9 +468,14 @@ button {
     background-color: rgb(76, 108, 195);
 }
 .delete-button {
+    margin-left: 5px;
     background-color: rgb(195, 76, 76);
 }
 .edit-button-a {
+    color: white;
+    text-decoration: none;
+}
+.delete-button-a {
     color: white;
     text-decoration: none;
 }
@@ -525,4 +530,15 @@ button {
     margin-right: 4%;
     color: #111111;
     cursor: default;
+}
+
+.image-content-friend {
+    height: 100px;
+    border-radius: 8px;
+}
+
+
+.button-all-wrapper {
+    display: flex;
+    flex-direction: row;
 }
