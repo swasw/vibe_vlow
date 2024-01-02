@@ -73,7 +73,7 @@ $fetch_q = mysqli_query($connection,$post_q);
                     <td><img src="data:image/jpg;base64,<?= $content;?>"></td>
                     <td><?=$row['caption']?></td>
                     <td>
-                        <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['username']?>" class="edit-button-a">Edit</a></button>
+                        <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['id']?>" class="edit-button-a">Edit</a></button>
                         <button class="delete-button">Delete</button>
                     </td>
                 </tr>
