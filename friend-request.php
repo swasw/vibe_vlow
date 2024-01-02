@@ -100,13 +100,13 @@ $data = mysqli_query($connection, $getfriend);
                 </div>
             </div>
             <form action="acc-con.php" method="post">
-            <div class="all-button-wrapper">
-                <input type="hidden" name="uname" value="<?=$current_user; ?>">
-                <input type="hidden" name="person" value="<?=$friend_data['username']; ?>">
-                <button type="" class="decline-button">Decline</button>
-                <button type="submit" class="accept-button">Accept</button>
-            </div>
-            </form> 
+                <div class="all-button-wrapper">
+                    <input type="hidden" name="uname" value="<?=$current_user; ?>">
+                    <input type="hidden" name="person" value="<?=$friend_data['username']; ?>">
+                    <button type="" class="decline-button">Decline</button>
+                    <button type="submit" class="accept-button">Accept</button>
+                </div>
+            </form>
         </div>
         
         <?php

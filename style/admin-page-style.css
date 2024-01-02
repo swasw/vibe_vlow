@@ -542,3 +542,9 @@ button {
     display: flex;
     flex-direction: row;
 }
+
+.create-account {
+    background-image: linear-gradient(to right, #DD57F3, #FC354A);
+    padding: 10px 15px;
+    margin-top: 20px;
+}

@@ -69,6 +69,9 @@ if (isset($_POST['delete_user'])) {
     
     <div class="main-content">
         <h4 class="account-manager-text">Account Manager</h4>
+        <a href="register-page.php">
+            <button class="create-account">+ Create Account</button>
+        </a>
         <div class="table-account-wrapper">
             <table cellspacing="0">
                 <tr>
