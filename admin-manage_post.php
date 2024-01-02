@@ -5,7 +5,25 @@ require_once 'dbcon.php';
 $post_q = "SELECT * FROM post ORDER BY id DESC";
 $fetch_q = mysqli_query($connection,$post_q);
 
+require_once 'dbcon.php';
 
+$post_q = "SELECT * FROM post ORDER BY id DESC";
+$fetch_q = mysqli_query($connection,$post_q);
+
+if (isset($_POST['delete_post'])) {
+    $delete_id = $_POST['delete_id'];
+    $delete_query = "DELETE FROM `post` WHERE id = ?";
+    $stmt = mysqli_prepare($connection, $delete_query);
+    mysqli_stmt_bind_param($stmt, 'i', $delete_id);
+    mysqli_stmt_execute($stmt);
+
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        header('Location: admin-manage_post.php');
+        exit;
+    } else {
+        echo "Failed to delete post.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,11 +88,17 @@ $fetch_q = mysqli_query($connection,$post_q);
                 ?>
                 <tr>
                     <td><?=$row['username']?></td>
-                    <td><img src="data:image/jpg;base64,<?= $content;?>"></td>
+                    <td><img src="data:image/jpg;base64,<?= $content;?>" class="image-content-friend"></td>
                     <td><?=$row['caption']?></td>
                     <td>
-                        <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['id']?>" class="edit-button-a">Edit</a></button>
-                        <button class="delete-button">Delete</button>
+                        <div class="button-all-wrapper">
+                            <button class="edit-button"><a href="admin-edit_post.php?person=<?=$row['id']?>" class="edit-button-a">Edit</a></button>
+    
+                            <form method="POST" action="admin-manage_post.php">
+                                <input type="hidden" name="delete_id" value="<?= $row['id'] ?>">
+                                <button type="submit" class="delete-button" name="delete_post">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 <?php

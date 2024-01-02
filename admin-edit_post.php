@@ -88,6 +88,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="edit-account-wrapper">
             <div class="input-edit-wrapper">
                 <h4 class="input-edit-text">Username</h4>
+                <?php
+                $row = mysqli_fetch_assoc($fetch_q)
+                ?>
                 <div class="static-username">
                     <h4 class="static-text"><?=$current_user?></h4>
                 </div>
